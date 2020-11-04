@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="234.89792"
+   height="66.486069"
+   viewBox="82.027478 8.58125 234.89792 66.486072"
+   preserveAspectRatio="xMidYMid"
+   version="1.1"
+   id="svg126"
+   sodipodi:docname="wintry.io.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata130">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0.33333333"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1659"
+     inkscape:window-height="864"
+     id="namedview128"
+     showgrid="false"
+     inkscape:zoom="3.414249"
+     inkscape:cx="117.59539"
+     inkscape:cy="19.263428"
+     inkscape:window-x="665"
+     inkscape:window-y="501"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg126"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs116">
+    <filter
+       id="editing-crystal"
+       x="-1"
+       y="-1"
+       width="3"
+       height="3">
+      <feMorphology
+         operator="dilate"
+         radius="2"
+         in="SourceGraphic"
+         result="border"
+         id="feMorphology71" />
+      <feFlood
+         flood-color="#71c2cc"
+         result="black"
+         id="feFlood73" />
+      <feMorphology
+         operator="dilate"
+         radius="2"
+         in="SourceGraphic"
+         result="erode"
+         id="feMorphology75" />
+      <feGaussianBlur
+         in="erode"
+         stdDeviation="4"
+         result="blur"
+         id="feGaussianBlur77" />
+      <feOffset
+         in="blur"
+         dx="2"
+         dy="2"
+         result="offset"
+         id="feOffset79" />
+      <feComposite
+         operator="atop"
+         in="offset"
+         in2="black"
+         result="merge"
+         id="feComposite81" />
+      <feComposite
+         operator="in"
+         in="merge"
+         in2="SourceGraphic"
+         result="inner-shadow"
+         id="feComposite83" />
+      <feGaussianBlur
+         in="SourceGraphic"
+         stdDeviation="2.5"
+         result="shadow1"
+         id="feGaussianBlur85" />
+      <feOffset
+         in="shadow1"
+         dx="0"
+         dy="5"
+         result="shadow"
+         id="feOffset87" />
+      <feSpecularLighting
+         in="SourceGraphic"
+         result="specular"
+         surfaceScale="1.5"
+         specularConstant="100"
+         specularExponent="10"
+         lighting-color="#4996a2"
+         id="feSpecularLighting91">
+        <fePointLight
+           x="250"
+           y="-300"
+           z="-400"
+           id="fePointLight89" />
+      </feSpecularLighting>
+      <feGaussianBlur
+         in="specular"
+         stdDeviation="1"
+         result="specular2"
+         id="feGaussianBlur93" />
+      <feComposite
+         operator="in"
+         in="specular2"
+         in2="SourceAlpha"
+         result="specular3"
+         id="feComposite95" />
+      <feMerge
+         result="merge"
+         id="feMerge103">
+        <feMergeNode
+           in="border"
+           id="feMergeNode97" />
+        <feMergeNode
+           in="inner-shadow"
+           id="feMergeNode99" />
+        <feMergeNode
+           in="specular3"
+           id="feMergeNode101" />
+      </feMerge>
+      <feComponentTransfer
+         in="merge"
+         result="final"
+         id="feComponentTransfer107">
+        <feFuncA
+           type="linear"
+           slope="0.9"
+           intercept="0"
+           id="feFuncA105" />
+      </feComponentTransfer>
+      <feMerge
+         id="feMerge113">
+        <feMergeNode
+           in="shadow"
+           id="feMergeNode109" />
+        <feMergeNode
+           in="final"
+           id="feMergeNode111" />
+      </feMerge>
+    </filter>
+  </defs>
+  <g
+     filter="url(#editing-crystal)"
+     id="g122"
+     transform="translate(-50.377124,-47.155318)">
+    <g
+       transform="translate(134.48,102.265)"
+       id="g120">
+      <path
+         d="M 13.95,0 H 9.47 L 2.05,-30.78 h 3.9 l 5.95,27.26 6.79,-20.35 h 3.71 l 6.66,20.35 5.56,-27.26 h 3.91 L 31.55,0 h -4.41 l -6.6,-19.58 z m 38.34,-36.74 v 0 q -1.22,0 -2.05,-0.73 v 0 0 q -0.83,-0.74 -0.83,-2.02 v 0 0 q 0,-1.28 0.83,-2.08 v 0 0 q 0.83,-0.8 2.05,-0.8 v 0 0 q 1.21,0 2.01,0.74 v 0 0 q 0.8,0.73 0.8,2.08 v 0 0 q 0,1.34 -0.8,2.08 v 0 0 q -0.8,0.73 -2.01,0.73 z m 8,36.74 h -16 v -2.82 h 5.95 v -25.15 h -5.95 v -2.81 h 9.98 v 27.96 h 6.02 z m 5.89,0 v -30.78 h 3.32 l 0.26,1.98 v 0 q 3.07,-1.41 5.12,-1.92 v 0 0 q 2.05,-0.51 4.42,-0.51 v 0 0 q 4.8,0 7.04,2.56 v 0 0 q 2.24,2.56 2.24,7.93 v 0 V 0 h -3.97 v -20.86 0 q 0,-3.78 -1.22,-5.44 v 0 0 q -1.21,-1.67 -4.29,-1.67 v 0 0 q -2.24,0 -4.32,0.45 v 0 0 q -2.08,0.45 -4.57,1.86 v 0 V 0 Z m 41.15,0.32 v 0 q -3.27,-0.06 -5.06,-1.41 v 0 0 q -1.79,-1.34 -2.46,-3.97 v 0 0 q -0.67,-2.62 -0.67,-7.04 v 0 -15.87 h -4.8 v -2.81 h 4.92 l 0.77,-8.84 h 3.14 v 8.84 h 9.6 v 2.81 h -9.6 v 15.94 0 q 0,3.97 0.61,5.89 v 0 0 q 0.6,1.92 1.66,2.52 v 0 0 q 1.06,0.61 2.98,0.61 v 0 0 q 3.45,0 4.67,-0.19 v 0 l 0.19,3.2 v 0 q -2.5,0.32 -5.95,0.32 z M 120.32,0 v -30.78 h 3.84 l 0.13,2.68 v 0 q 1.79,-1.21 4.64,-2.11 v 0 0 q 2.85,-0.89 5.28,-1.02 v 0 3.33 0 q -2.75,0 -5.54,0.83 v 0 0 q -2.78,0.83 -4.32,1.92 v 0 V 0 Z m 24.7,12.16 v 0 q -2.49,0 -5.12,-1.09 v 0 l 0.58,-3.13 0.06,-0.07 v 0 q 2.69,0.83 4.23,0.83 v 0 0 q 1.66,0 2.56,-1.4 v 0 0 q 0.89,-1.41 1.47,-3.2 v 0 0 q 0.58,-1.8 0.77,-2.37 v 0 l 0.83,-2.56 -12.67,-29.95 h 4.29 l 10.11,25.6 8.32,-25.6 h 4.22 L 153.86,0.51 v 0 q -1.54,4.42 -2.6,6.72 v 0 0 q -1.05,2.31 -2.52,3.62 v 0 0 q -1.48,1.31 -3.72,1.31 z M 175.74,0 h -4.99 v -6.34 h 4.99 z m 16.32,-36.74 v 0 q -1.21,0 -2.04,-0.73 v 0 0 q -0.84,-0.74 -0.84,-2.02 v 0 0 q 0,-1.28 0.84,-2.08 v 0 0 q 0.83,-0.8 2.04,-0.8 v 0 0 q 1.22,0 2.02,0.74 v 0 0 q 0.8,0.73 0.8,2.08 v 0 0 q 0,1.34 -0.8,2.08 v 0 0 q -0.8,0.73 -2.02,0.73 z m 8,36.74 h -16 v -2.82 h 5.96 v -25.15 h -5.96 v -2.81 h 9.99 v 27.96 h 6.01 z m 16.9,0.32 v 0 q -6.08,0 -9.02,-4.13 v 0 0 q -2.95,-4.13 -2.95,-11.68 v 0 0 q 0,-7.87 2.88,-11.81 v 0 0 q 2.88,-3.93 9.09,-3.93 v 0 0 q 6.21,0 9.12,3.93 v 0 0 q 2.91,3.94 2.91,11.81 v 0 0 q 0,7.55 -2.94,11.68 v 0 0 q -2.95,4.13 -9.09,4.13 z m 0,-3.33 v 0 q 4.42,0 6.21,-3.2 v 0 0 q 1.79,-3.2 1.79,-9.28 v 0 0 q 0,-5.95 -1.82,-9.21 v 0 0 q -1.83,-3.27 -6.18,-3.27 v 0 0 q -4.35,0 -6.18,3.27 v 0 0 q -1.82,3.26 -1.82,9.21 v 0 0 q 0,6.08 1.79,9.28 v 0 0 q 1.79,3.2 6.21,3.2 z"
+         fill="#5699d2"
+         stroke="#d8ebf9"
+         stroke-width="1.5"
+         id="path118" />
+    </g>
+  </g>
+  <style
+     id="style124">text {
+  font-size: 64px;
+  font-family: Arial Black;
+  dominant-baseline: central;
+  text-anchor: middle;
+}</style>
+  <rect
+     style="fill:none;fill-rule:evenodd"
+     id="rect134"
+     width="234.89792"
+     height="66.486069"
+     x="82.027481"
+     y="8.5812502" />
+</svg>
