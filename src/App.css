@@ -1,8 +1,27 @@
 body {
   background-color: #282c34;
-  font-size: calc(10px + 2vmin);
   color: white;
   min-width:1060px;
+}
+
+ul {
+  float:left;
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+}
+
+label {
+  display: inline-block;
+  width: 200px;
+  text-align: left;
+}
+
+input {
+  width: 200px;
+  text-align: right;
 }
 
 .wrapper {

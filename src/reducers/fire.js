@@ -1,13 +1,20 @@
 import {
   FIRE_GREETING_BEGIN,
   FIRE_GREETING_SUCCESS,
-  FIRE_GREETING_FAILURE
+  FIRE_GREETING_FAILURE,
+  FIRE_UPDATE_INCOME
 } from '../actions/fire'
 
 const initialState = {
   greeting: 'init',
   loading: false,
-  error: null
+  error: null,
+  income1: '',
+  gIncome: '',
+  effFTax: '',
+  effSTax: '',
+  effLTax: '',
+  nIncome: ''
 }
 
 export default function fire(state = initialState, action) {
@@ -18,6 +25,16 @@ export default function fire(state = initialState, action) {
       return { ...state, loading: false, greeting: action.payload.message }
     case FIRE_GREETING_FAILURE:
       return { ...state, loading: false, greeting: '', error: action.payload.error }
+    case FIRE_UPDATE_INCOME:
+      return {
+        ...state,
+        income1: action.income1,
+        gIncome: action.gIncome,
+        effFTax: action.effFTax,
+        effSTax: action.effSTax,
+        effLTax: action.effLTax,
+        nIncome: action.nIncome
+      }
     default:
       return state
   }

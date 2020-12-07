@@ -9,28 +9,21 @@ class Budget extends React.Component {
 
   render() {
     const { error, loading, greeting } = this.props
+    var greet = <h3>Budget dashboard says: {greeting}</h3>
 
     if (error) {
-      return (
-        <header className="App-header">
-          <p>Error: {error.message}</p>
-        </header>
-      )
+      greet = <h3>Error: {error.message}</h3>
     }
 
     if (loading) {
-      return (
-        <header className="App-header">
-          <p>loading...</p>
-        </header>
-      )
+      greet = <h3>loading...</h3>
     }
 
     return (
       <header className="App-header">
-        <p>
-          budget dashboard says: {greeting}
-        </p>
+        <div className="wrapper">
+          {greet}
+        </div>
       </header>
     )
   }
