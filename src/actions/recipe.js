@@ -23,6 +23,7 @@ export function fetchRecipeGreeting() {
       .then(handleErrors)
       .then(res => res.json())
       .then((json) => {
+        console.log(json)
         dispatch(fetchRecipeGreetingSuccess(json.message))
         return json.message
       })

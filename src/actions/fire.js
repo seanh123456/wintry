@@ -51,7 +51,8 @@ export function fetchFireGreeting() {
       .then(res => res.json())
       .then((json) => {
         dispatch(fetchFireGreetingSuccess(json.message))
-        return json.message
+        dispatch(fireFormatIncome(json.income1))
+        return json
       })
       .catch(error => dispatch(fetchFireGreetingFailure(error)))
   }

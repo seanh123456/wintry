@@ -37,7 +37,7 @@ class Fire extends React.Component {
           {greet}
           <ul>
             <li>
-              <label for="income1">Income 1:</label>
+              <label htmlFor="income1">Income 1:</label>
               <input
                 id="income1"
                 type="text"
@@ -49,23 +49,23 @@ class Fire extends React.Component {
               />
             </li>
             <li>
-              <label for="gIncome">Gross Income:</label>
+              <label htmlFor="gIncome">Gross Income:</label>
               <input id="gIncome" type="text" value={gIncome} readOnly/>
             </li>
             <li>
-              <label for="effFTax">Effective Federal Tax:</label>
+              <label htmlFor="effFTax">Effective Federal Tax:</label>
               <input id="effFTax" type="text" value={effFTax} readOnly/>
             </li>
             <li>
-              <label for="effSTax">Effective State Tax:</label>
+              <label htmlFor="effSTax">Effective State Tax:</label>
               <input id="effSTax" type="text" value={effSTax} readOnly/>
             </li>
             <li>
-              <label for="effLTax">Effective Local Tax:</label>
+              <label htmlFor="effLTax">Effective Local Tax:</label>
               <input id="effLTax" type="text" value={effLTax} readOnly/>
             </li>
             <li>
-              <label for="nIncome">Net Income:</label>
+              <label htmlFor="nIncome">Net Income:</label>
               <input id="nIncome" type="text" value={nIncome} readOnly/>
             </li>
           </ul>
