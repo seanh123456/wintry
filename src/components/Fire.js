@@ -14,6 +14,7 @@ class Fire extends React.Component {
       greeting,
       income1,
       gIncome,
+      effFITax,
       effFTax,
       effSTax,
       effLTax,
@@ -35,40 +36,82 @@ class Fire extends React.Component {
       <header className="App-header">
         <div className="wrapper">
           {greet}
-          <ul>
-            <li>
-              <label htmlFor="income1">Income 1:</label>
-              <input
-                id="income1"
-                type="text"
-                ref={node => (input = node)}
-                value={income1}
-                onChange={() => this.props.dispatch(fireUpdateIncome(input.value))}
-                onFocus={() => this.props.dispatch(fireEditIncome(input.value))}
-                onBlur={() => this.props.dispatch(fireFormatIncome(input.value))}
-              />
-            </li>
-            <li>
-              <label htmlFor="gIncome">Gross Income:</label>
-              <input id="gIncome" type="text" value={gIncome} readOnly/>
-            </li>
-            <li>
-              <label htmlFor="effFTax">Effective Federal Tax:</label>
-              <input id="effFTax" type="text" value={effFTax} readOnly/>
-            </li>
-            <li>
-              <label htmlFor="effSTax">Effective State Tax:</label>
-              <input id="effSTax" type="text" value={effSTax} readOnly/>
-            </li>
-            <li>
-              <label htmlFor="effLTax">Effective Local Tax:</label>
-              <input id="effLTax" type="text" value={effLTax} readOnly/>
-            </li>
-            <li>
-              <label htmlFor="nIncome">Net Income:</label>
-              <input id="nIncome" type="text" value={nIncome} readOnly/>
-            </li>
-          </ul>
+          <table className="financial">
+            <tbody>
+              <tr className="income editable">
+                <th><label htmlFor="income1">Income 1:</label></th>
+                <td><input
+                  id="income1"
+                  type="text"
+                  className={income1.class}
+                  ref={node => (input = node)}
+                  value={income1.val}
+                  onChange={() => this.props.dispatch(fireUpdateIncome(input.value))}
+                  onFocus={() => this.props.dispatch(fireEditIncome(input.value))}
+                  onBlur={() => this.props.dispatch(fireFormatIncome(input.value))}
+                /></td>
+              </tr>
+              <tr className="income">
+                <th><label htmlFor="gIncome" >Gross Income:</label></th>
+                <td><input
+                  id="gIncome"
+                  type="text"
+                  className={gIncome.class}
+                  value={gIncome.val} readOnly
+                /></td>
+              </tr>
+              <tr className="fica">
+                <th><label htmlFor="effFITax">Effective FICA Tax:</label></th>
+                <td><input
+                  id="effFITax"
+                  type="text"
+                  className={effFITax.class}
+                  value={effFITax.val}
+                  readOnly
+                /></td>
+              </tr>
+              <tr className="federal">
+                <th><label htmlFor="effFTax">Effective Federal Tax:</label></th>
+                <td><input
+                  id="effFTax"
+                  type="text"
+                  className={effFTax.class}
+                  value={effFTax.val}
+                  readOnly
+                /></td>
+              </tr>
+              <tr className="state">
+                <th><label htmlFor="effSTax">Effective State Tax:</label></th>
+                <td><input
+                  id="effSTax"
+                  type="text"
+                  className={effSTax.class}
+                  value={effSTax.val}
+                  readOnly
+                /></td>
+              </tr>
+              <tr className="local">
+                <th><label htmlFor="effLTax">Effective Local Tax:</label></th>
+                <td><input
+                  id="effLTax"
+                  type="text"
+                  className={effLTax.class}
+                  value={effLTax.val}
+                  readOnly
+                /></td>
+              </tr>
+              <tr className="total-tax">
+                <th><label htmlFor="nIncome">Net Income:</label></th>
+                <td><input
+                  id="nIncome"
+                  type="text"
+                  className={nIncome.class}
+                  value={nIncome.val}
+                  readOnly
+                /></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </header>
     )
@@ -81,6 +124,7 @@ const mapStateToProps = state => ({
   error: state.fire.error,
   income1: state.fire.income1,
   gIncome: state.fire.gIncome,
+  effFITax: state.fire.effFITax,
   effFTax: state.fire.effFTax,
   effSTax: state.fire.effSTax,
   effLTax: state.fire.effLTax,
