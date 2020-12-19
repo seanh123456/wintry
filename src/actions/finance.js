@@ -32,7 +32,7 @@ export const financeUpdateIncome = income1 => ({
 
 export const financeEditIncome = income1 => ({
     type: FINANCE_EDIT_INCOME,
-    income1: { val: (income1 === '' || toNumber(income1) == '0') ? '' : toNumber(income1), class: getColorClass(toNumber(income1))},
+    income1: { val: (income1 === '' || toNumber(income1) === '0') ? '' : toNumber(income1), class: getColorClass(toNumber(income1))},
 })
 
 export const financeFormatIncome = income1 => ({
