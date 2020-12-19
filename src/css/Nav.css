@@ -1,12 +1,14 @@
 nav {
   background-color: #16181c;
   height: 53px;
+  font-size: calc(10px + 2vmin);
 	margin:0;
 	padding:5px;
 }
 
 nav ul {
   display: inline-block;
+  list-style-type: none;
   margin: 0;
   padding: 0;
   float: left;

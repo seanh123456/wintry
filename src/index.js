@@ -12,7 +12,7 @@ import reportWebVitals from './reportWebVitals'
 const composeEnhancers = composeWithDevTools({})
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
-store.subscribe(() => console.log(store.getState()))
+//store.subscribe(() => console.log(store.getState()))
 
 ReactDOM.render(
   <React.StrictMode>

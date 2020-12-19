@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux'
 import auth from './authentication'
-import budget from './budget'
-import fire from './fire'
+import finance from './finance'
 import recipe from './recipe'
 
 export default combineReducers({
   auth,
-  budget,
-  fire,
+  finance,
   recipe
 })
