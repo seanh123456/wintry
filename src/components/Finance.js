@@ -119,7 +119,6 @@ class Finance extends React.Component {
 }
 
 const mapStateToProps = state => ({
-<<<<<<< HEAD:src/components/Finance.js
   greeting: state.finance.greeting,
   loading: state.finance.loading,
   error: state.finance.error,
@@ -130,17 +129,6 @@ const mapStateToProps = state => ({
   effSTax: state.finance.effSTax,
   effLTax: state.finance.effLTax,
   nIncome: state.finance.nIncome
-=======
-  greeting: state.finance.greeting,
-  loading: state.finance.loading,
-  error: state.finance.error,
-  income1: state.finance.income1,
-  gIncome: state.finance.gIncome,
-  effFTax: state.finance.effFTax,
-  effSTax: state.finance.effSTax,
-  effLTax: state.finance.effLTax,
-  nIncome: state.finance.nIncome
->>>>>>> da02ff9... Combine finance and budget into finance:src/components/Finance.js
 })
 
 export default connect(mapStateToProps) (Finance)
