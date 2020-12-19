@@ -1,10 +1,18 @@
 import {
+<<<<<<< HEAD:src/reducers/fire.js
   FIRE_GREETING_BEGIN,
   FIRE_GREETING_SUCCESS,
   FIRE_GREETING_FAILURE,
   FIRE_EDIT_INCOME,
   FIRE_UPDATE_INCOME
 } from '../actions/fire'
+=======
+  FINANCE_GREETING_BEGIN,
+  FINANCE_GREETING_SUCCESS,
+  FINANCE_GREETING_FAILURE,
+  FINANCE_UPDATE_INCOME
+} from '../actions/finance'
+>>>>>>> da02ff9... Combine fire and budget into finance:src/reducers/finance.js
 
 const initialState = {
   greeting: 'init',
@@ -19,24 +27,28 @@ const initialState = {
   nIncome: { val: '$0.00', class: '' },
 }
 
-export default function fire(state = initialState, action) {
+export default function finance(state = initialState, action) {
   switch (action.type) {
-    case FIRE_GREETING_BEGIN:
+    case FINANCE_GREETING_BEGIN:
       return { ...state, loading: true }
-    case FIRE_GREETING_SUCCESS:
+    case FINANCE_GREETING_SUCCESS:
       return {
         ...state,
         loading: false,
         greeting: action.payload.message,
       }
-    case FIRE_GREETING_FAILURE:
+    case FINANCE_GREETING_FAILURE:
       return { ...state, loading: false, greeting: '', error: action.payload.error }
+<<<<<<< HEAD:src/reducers/fire.js
     case FIRE_EDIT_INCOME:
       return {
         ...state,
         income1: action.income1
       }
     case FIRE_UPDATE_INCOME:
+=======
+    case FINANCE_UPDATE_INCOME:
+>>>>>>> da02ff9... Combine fire and budget into finance:src/reducers/finance.js
       return {
         ...state,
         income1: action.income1,

@@ -1,26 +1,26 @@
-export const FIRE_GREETING_BEGIN = 'FIRE_GREETING_BEGIN'
-export const FIRE_GREETING_SUCCESS = 'FIRE_GREETING_SUCCESS'
-export const FIRE_GREETING_FAILURE = 'FIRE_GREETING_FAILURE'
+export const FINANCE_GREETING_BEGIN = 'FINANCE_GREETING_BEGIN'
+export const FINANCE_GREETING_SUCCESS = 'FINANCE_GREETING_SUCCESS'
+export const FINANCE_GREETING_FAILURE = 'FINANCE_GREETING_FAILURE'
 
-export const FIRE_EDIT_INCOME = 'FIRE_EDIT_INCOME'
-export const FIRE_UPDATE_INCOME = 'FIRE_UPDATE_INCOME'
+export const FINANCE_EDIT_INCOME = 'FINANCE_EDIT_INCOME'
+export const FINANCE_UPDATE_INCOME = 'FINANCE_UPDATE_INCOME'
 
-export const fetchFireGreetingBegin = () => ({
-  type: FIRE_GREETING_BEGIN
+export const fetchFinanceGreetingBegin = () => ({
+  type: FINANCE_GREETING_BEGIN
 })
 
-export const fetchFireGreetingSuccess = message => ({
-    type: FIRE_GREETING_SUCCESS,
+export const fetchFinanceGreetingSuccess = message => ({
+    type: FINANCE_GREETING_SUCCESS,
     payload: { message }
 })
 
-export const fetchFireGreetingFailure = error => ({
-    type: FIRE_GREETING_FAILURE,
+export const fetchFinanceGreetingFailure = error => ({
+    type: FINANCE_GREETING_FAILURE,
     payload: { error }
 })
 
-export const fireUpdateIncome = income1 => ({
-    type: FIRE_UPDATE_INCOME,
+export const financeUpdateIncome = income1 => ({
+    type: FINANCE_UPDATE_INCOME,
     income1: { val: income1, class: getColorClass(income1)},
     gIncome: { val: toCurrency(income1), class: getColorClass(income1) },
     effFITax: { val: toCurrency(income1 * -.0710), class: getColorClass(income1 * -.0710) },
@@ -30,13 +30,13 @@ export const fireUpdateIncome = income1 => ({
     nIncome: { val: toCurrency(income1 * (1-.1237-.0316-.0205)), class: getColorClass(income1 * (1-.1237-.0316-.0205)) }
 })
 
-export const fireEditIncome = income1 => ({
-    type: FIRE_EDIT_INCOME,
+export const financeEditIncome = income1 => ({
+    type: FINANCE_EDIT_INCOME,
     income1: { val: (income1 === '' || toNumber(income1) == '0') ? '' : toNumber(income1), class: getColorClass(toNumber(income1))},
 })
 
-export const fireFormatIncome = income1 => ({
-    type: FIRE_UPDATE_INCOME,
+export const financeFormatIncome = income1 => ({
+    type: FINANCE_UPDATE_INCOME,
     income1: { val: toCurrency(income1), class: getColorClass(income1) },
     gIncome: { val: toCurrency(income1), class: getColorClass(income1) },
     effFITax: { val: toCurrency(income1 * -.0710), class: getColorClass(income1 * -.0710) },
@@ -46,18 +46,18 @@ export const fireFormatIncome = income1 => ({
     nIncome: { val: toCurrency(income1 * (1-.1237-.0316-.0205)), class: getColorClass(income1 * (1-.1237-.0316-.0205)) }
 })
 
-export function fetchFireGreeting() {
+export function fetchFinanceGreeting() {
   return dispatch => {
-    dispatch(fetchFireGreetingBegin())
-    return fetch("/api/fire/")
+    dispatch(fetchFinanceGreetingBegin())
+    return fetch("/api/finance/")
       .then(handleErrors)
       .then(res => res.json())
       .then((json) => {
-        dispatch(fetchFireGreetingSuccess(json.message))
-        dispatch(fireFormatIncome(json.income1))
+        dispatch(fetchFinanceGreetingSuccess(json.message))
+        dispatch(financeFormatIncome(json.income1))
         return json
       })
-      .catch(error => dispatch(fetchFireGreetingFailure(error)))
+      .catch(error => dispatch(fetchFinanceGreetingFailure(error)))
   }
 }
 

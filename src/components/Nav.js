@@ -7,8 +7,7 @@ import {
 } from "react-router-dom"
 
 import Home from './Home'
-import Fire from './Fire'
-import Budget from './Budget'
+import Finance from './Finance'
 import Recipe from './Recipe'
 import SignIn from './SignIn'
 import logo from '../wintry.io.svg'
@@ -24,10 +23,7 @@ export default function Nav() {
               <Link to="/"><img src={logo} className="App-home" alt="wintry" /></Link>
             </li>
             <li>
-              <Link className="App-link" to="/fire">FIRE</Link>
-            </li>
-            <li>
-              <Link className="App-link" to="/budget">Budget</Link>
+              <Link className="App-link" to="/finance">Finance</Link>
             </li>
             <li>
               <Link className="App-link" to="/recipe">Recipe</Link>
@@ -39,11 +35,8 @@ export default function Nav() {
         </div>
       </nav>
       <Switch>
-        <Route path="/fire">
-          <Fire />
-        </Route>
-        <Route path="/budget">
-          <Budget />
+        <Route path="/finance">
+          <Finance />
         </Route>
         <Route path="/recipe">
           <Recipe />

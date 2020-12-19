@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchFireGreeting, fireUpdateIncome, fireEditIncome, fireFormatIncome } from '../actions/fire'
+import { fetchFinanceGreeting, financeUpdateIncome, financeEditIncome, financeFormatIncome } from '../actions/finance'
 
-class Fire extends React.Component {
+class Finance extends React.Component {
   componentDidMount() {
-    this.props.dispatch(fetchFireGreeting())
+    this.props.dispatch(fetchFinanceGreeting())
   }
 
   render() {
@@ -22,7 +22,7 @@ class Fire extends React.Component {
     } = this.props
 
     let input
-    var greet = <h3>Fire dashboard says: {greeting}</h3>
+    var greet = <h3>Finance dashboard says: {greeting}</h3>
 
     if (error) {
       greet = <h3>Error: {error.message}</h3>
@@ -46,9 +46,9 @@ class Fire extends React.Component {
                   className={income1.class}
                   ref={node => (input = node)}
                   value={income1.val}
-                  onChange={() => this.props.dispatch(fireUpdateIncome(input.value))}
-                  onFocus={() => this.props.dispatch(fireEditIncome(input.value))}
-                  onBlur={() => this.props.dispatch(fireFormatIncome(input.value))}
+                  onChange={() => this.props.dispatch(financeUpdateIncome(input.value))}
+                  onFocus={() => this.props.dispatch(financeEditIncome(input.value))}
+                  onBlur={() => this.props.dispatch(financeFormatIncome(input.value))}
                 /></td>
               </tr>
               <tr className="income">
@@ -119,16 +119,28 @@ class Fire extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  greeting: state.fire.greeting,
-  loading: state.fire.loading,
-  error: state.fire.error,
-  income1: state.fire.income1,
-  gIncome: state.fire.gIncome,
-  effFITax: state.fire.effFITax,
-  effFTax: state.fire.effFTax,
-  effSTax: state.fire.effSTax,
-  effLTax: state.fire.effLTax,
-  nIncome: state.fire.nIncome
+<<<<<<< HEAD:src/components/Finance.js
+  greeting: state.finance.greeting,
+  loading: state.finance.loading,
+  error: state.finance.error,
+  income1: state.finance.income1,
+  gIncome: state.finance.gIncome,
+  effFITax: state.finance.effFITax,
+  effFTax: state.finance.effFTax,
+  effSTax: state.finance.effSTax,
+  effLTax: state.finance.effLTax,
+  nIncome: state.finance.nIncome
+=======
+  greeting: state.finance.greeting,
+  loading: state.finance.loading,
+  error: state.finance.error,
+  income1: state.finance.income1,
+  gIncome: state.finance.gIncome,
+  effFTax: state.finance.effFTax,
+  effSTax: state.finance.effSTax,
+  effLTax: state.finance.effLTax,
+  nIncome: state.finance.nIncome
+>>>>>>> da02ff9... Combine finance and budget into finance:src/components/Finance.js
 })
 
-export default connect(mapStateToProps) (Fire)
+export default connect(mapStateToProps) (Finance)
