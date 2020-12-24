@@ -1,0 +1,91 @@
+@import './colors';
+
+.financial {
+  border-spacing: 0px;
+
+  label {
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+    margin-right: 10px;
+  }
+
+  input {
+    background-color: transparent;
+    border: none;
+    width: 200px;
+    text-align: right;
+  }
+
+  .editable td {
+    border: 1px dashed yellow;
+    line-height: 17px;
+  }
+
+  .positive {
+    color: #009900;
+  }
+
+  .negative {
+    color: #990000;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  .income {
+    th {
+      background-color: $income_color;
+    }
+    td {
+      background-color: lighten($income_color, 15%);
+    }
+  }
+
+  .fica {
+    th {
+      background-color: $fica_color;
+    }
+    td {
+      background-color: lighten($fica_color, 15%);
+    }
+  }
+
+
+  .federal {
+    th {
+      background-color: $federal_color;
+    }
+    td {
+      background-color: lighten($federal_color, 15%);
+    }
+  }
+
+  .state {
+    th {
+      background-color: $state_color;
+    }
+    td {
+      background-color: lighten($state_color, 15%);
+    }
+  }
+
+  .local {
+    th {
+      background-color: $local_color;
+    }
+    td {
+      background-color: lighten($local_color, 15%);
+    }
+  }
+
+  .total-tax {
+    th {
+      background-color: $total_color;
+    }
+    td {
+      background-color: lighten($total_color, 15%);
+    }
+  }
+}

@@ -1,0 +1,53 @@
+@import './colors';
+
+body {
+  margin: 0;
+  font-family: -apple-system,BlinkMacSystemFont,segoe ui,roboto,oxygen,ubuntu,cantarell,fira sans,droid sans,helvetica neue,sans-serif;
+  font-weight: 200;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: $body_color;
+  color: $text_color;
+  min-width:1060px;
+}
+
+input {
+  font-family: -apple-system,BlinkMacSystemFont,segoe ui,roboto,oxygen,ubuntu,cantarell,fira sans,droid sans,helvetica neue,sans-serif;
+}
+
+.wrapper {
+  width: 860px;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  overflow: hidden;
+
+  &.hero {
+    padding-top: 100;
+  }
+
+  &.no-pad {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App-link {
+  color: $link_color;
+
+  &:hover {
+    filter: hue-rotate(180deg);
+  }
+}

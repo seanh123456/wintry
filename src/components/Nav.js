@@ -11,7 +11,7 @@ import Finance from './Finance'
 import Recipe from './Recipe'
 import SignIn from './SignIn'
 import logo from '../wintry.io.svg'
-import '../css/Nav.css'
+import '../scss/Nav.scss'
 
 export default function Nav() {
   return (

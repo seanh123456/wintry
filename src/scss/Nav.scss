@@ -1,0 +1,49 @@
+@import './colors';
+
+nav {
+  background-color: darken($body_color, 8%);
+  height: 53px;
+  font-size: 30px;
+	margin:0;
+	padding:5px;
+
+  ul {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    float: left;
+  }
+
+  li {
+    display: inline-block;
+    height: 44px;
+    padding: 5px 0px;
+    margin: 0;
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right:0px;
+    }
+  }
+
+  img.App-home {
+    vertical-align: middle;
+    height: 34px;
+    padding: 0;
+    margin: 0;
+
+    &:hover {
+      filter: hue-rotate(180deg);
+    }
+  }
+
+  .nav-right {
+    float: right;
+    line-height: 43px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
