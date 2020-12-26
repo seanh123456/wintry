@@ -1,6 +1,7 @@
-$body_color: #ddb8ba;
+//$body_color: #ddb8ba;
+$body_color: #f6f6eb;
 $text_color: invert($body_color);
-$link_color: adjust_hue(lighten($text_color, 30%), 90%);
+$link_color: adjust_hue($text_color, 90%);
 
 $income_color: #f6b26b;
 $fica_color: #93c47d;

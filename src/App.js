@@ -1,7 +1,6 @@
 import React from 'react'
-import './scss/App.scss'
 
-import Nav from './components/Nav'
+import Nav from './shared/components/Nav'
 
 export default function App() {
   return (

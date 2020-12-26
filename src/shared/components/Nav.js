@@ -7,11 +7,10 @@ import {
 } from "react-router-dom"
 
 import Home from './Home'
-import Finance from './Finance'
-import Recipe from './Recipe'
-import SignIn from './SignIn'
-import logo from '../wintry.io.svg'
-import '../scss/Nav.scss'
+import SignIn from '../../authentication/components/SignIn'
+import Finance from '../../finance/components'
+import Recipe from '../../recipe/components/Recipe'
+import '../../scss/Nav.scss'
 
 export default function Nav() {
   return (
@@ -20,7 +19,7 @@ export default function Nav() {
         <div className="wrapper no-pad">
           <ul>
             <li>
-              <Link to="/"><img src={logo} className="App-home" alt="wintry" /></Link>
+              <Link className="App-link App-home" to="/">Wintry</Link>
             </li>
             <li>
               <Link className="App-link" to="/finance">Finance</Link>

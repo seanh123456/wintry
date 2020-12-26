@@ -30,9 +30,9 @@ class SignIn extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  greeting: state.auth.greeting,
-  loading: state.auth.loading,
-  error: state.auth.error
+  greeting: state.auth.auth.greeting,
+  loading: state.auth.auth.loading,
+  error: state.auth.auth.error
 })
 
 export default connect(mapStateToProps) (SignIn)

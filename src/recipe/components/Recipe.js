@@ -30,9 +30,9 @@ class Recipe extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  greeting: state.recipe.greeting,
-  loading: state.recipe.loading,
-  error: state.recipe.error
+  greeting: state.recipe.recipe.greeting,
+  loading: state.recipe.recipe.loading,
+  error: state.recipe.recipe.error
 })
 
 export default connect(mapStateToProps) (Recipe)
