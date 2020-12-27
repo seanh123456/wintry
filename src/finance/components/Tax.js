@@ -8,6 +8,7 @@ class Tax extends React.Component {
       effFTax,
       effSTax,
       effLTax,
+      totalTax,
     } = this.props
 
     return (
@@ -53,6 +54,16 @@ class Tax extends React.Component {
               readOnly
             /></td>
           </tr>
+          <tr className="total-tax">
+            <th><label htmlFor="totalTax">Total Tax:</label></th>
+            <td><input
+              id="totalTax"
+              type="text"
+              className={totalTax.class}
+              value={totalTax.val}
+              readOnly
+            /></td>
+          </tr>
         </tbody>
       </table>
     )
@@ -64,6 +75,7 @@ const mapStateToProps = state => ({
   effFTax: state.finance.tax.effFTax,
   effSTax: state.finance.tax.effSTax,
   effLTax: state.finance.tax.effLTax,
+  totalTax: state.finance.tax.totalTax,
 })
 
 export default connect(mapStateToProps) (Tax)

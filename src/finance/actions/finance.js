@@ -1,3 +1,5 @@
+import { financeFormatIncome } from '../actions/income'
+
 export const FINANCE_GREETING_BEGIN = 'FINANCE_GREETING_BEGIN'
 export const FINANCE_GREETING_SUCCESS = 'FINANCE_GREETING_SUCCESS'
 export const FINANCE_GREETING_FAILURE = 'FINANCE_GREETING_FAILURE'
@@ -7,13 +9,13 @@ export const fetchFinanceGreetingBegin = () => ({
 })
 
 export const fetchFinanceGreetingSuccess = message => ({
-    type: FINANCE_GREETING_SUCCESS,
-    payload: { message }
+  type: FINANCE_GREETING_SUCCESS,
+  payload: { message }
 })
 
 export const fetchFinanceGreetingFailure = error => ({
-    type: FINANCE_GREETING_FAILURE,
-    payload: { error }
+  type: FINANCE_GREETING_FAILURE,
+  payload: { error }
 })
 
 export function fetchFinanceGreeting() {
