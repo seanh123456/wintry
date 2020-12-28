@@ -11,6 +11,11 @@ class NumberFormatService {
     return Number(String(s).replace(/[^0-9.-]+/g,""))
   }
 
+  toNegNumber(s) {
+    var number = this.toNumber(s)
+    return (number > 0) ? number * -1.0 : number
+  }
+
   toCurrency(num) {
     var options = {
       maximumFractionDigits : 2,
@@ -20,6 +25,11 @@ class NumberFormatService {
     }
 
     return this.toNumber(num).toLocaleString(undefined, options)
+  }
+
+  toEntry(num) {
+    if (num === 0) return ''
+    return num
   }
 }
 

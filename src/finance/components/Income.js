@@ -1,6 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { financeEnterIncome, financeEditIncome, financeCalcIncome } from '../actions/income'
+import {
+  financeEnterIncome, financeEditIncome, financeDisplayIncome,
+  financeEnterHealthcare, financeEditHealthcare, financeDisplayHealthcare,
+  financeEnterHsa, financeEditHsa, financeDisplayHsa,
+} from '../actions/income'
 
 class Income extends React.Component {
   render() {
@@ -8,6 +12,8 @@ class Income extends React.Component {
       income1,
       gIncome,
       nIncome,
+      healthcare,
+      hsa,
     } = this.props
 
     const blur = (event) => {
@@ -16,11 +22,9 @@ class Income extends React.Component {
       }
     }
 
-    let input = {
-      income1: 0,
-      healthcare: 0,
-      hsa: 0,
-    }
+        let income1Input
+        let healthcareInput
+        let hsaInput
 
     return (
       <table className="financial">
@@ -31,12 +35,13 @@ class Income extends React.Component {
               id="income1"
               type="text"
               className={income1.class}
-              ref={node => (input.income1 = node.value)}
-              value={income1.val}
+              autoComplete="off"
+              ref={node => (income1Input = node)}
+              value={income1.editing ? income1.entry : income1.display}
               onKeyPress={blur}
-              onChange={() => this.props.dispatch(financeEnterIncome(input))}
-              onFocus={() => this.props.dispatch(financeEditIncome(input))}
-              onBlur={() => this.props.dispatch(financeCalcIncome(input))}
+              onChange={() => this.props.dispatch(financeEnterIncome(income1Input.value))}
+              onFocus={() => this.props.dispatch(financeEditIncome(income1Input.value))}
+              onBlur={() => this.props.dispatch(financeDisplayIncome())}
             /></td>
           </tr>
           <tr className="income">
@@ -45,36 +50,38 @@ class Income extends React.Component {
               id="gIncome"
               type="text"
               className={gIncome.class}
-              value={gIncome.val}
+              value={gIncome.display}
               readOnly
             /></td>
           </tr>
-          <tr className="healthcare">
+          <tr className="health">
             <th><label htmlFor="healthcare">Healthcare:</label></th>
             <td className="editable"><input
               id="healthcare"
               type="text"
               className={healthcare.class}
-              ref={node => (input.healthcare = node.value)}
-              value={healthcare.val}
+              autoComplete="off"
+              ref={node => (healthcareInput = node)}
+              value={healthcare.editing ? healthcare.entry : healthcare.display}
               onKeyPress={blur}
-              onChange={() => this.props.dispatch(financeEnterHealthcare(input))}
-              onFocus={() => this.props.dispatch(financeEditHealthcare(input))}
-              onBlur={() => this.props.dispatch(financeCalcHealthcare(input))}
+              onChange={() => this.props.dispatch(financeEnterHealthcare(healthcareInput.value))}
+              onFocus={() => this.props.dispatch(financeEditHealthcare(healthcareInput.value))}
+              onBlur={() => this.props.dispatch(financeDisplayHealthcare())}
             /></td>
           </tr>
-          <tr className="hsa">
+          <tr className="health">
             <th><label htmlFor="hsa">HSA:</label></th>
             <td className="editable"><input
               id="hsa"
               type="text"
               className={hsa.class}
-              ref={node => (input.hsa = node.value)}
-              value={hsa.val}
+              autoComplete="off"
+              ref={node => (hsaInput = node)}
+              value={hsa.editing ? hsa.entry : hsa.display}
               onKeyPress={blur}
-              onChange={() => this.props.dispatch(financeEnterHSA(input))}
-              onFocus={() => this.props.dispatch(financeEditHSA(input))}
-              onBlur={() => this.props.dispatch(financeCalcHSA(input))}
+              onChange={() => this.props.dispatch(financeEnterHsa(hsaInput.value))}
+              onFocus={() => this.props.dispatch(financeEditHsa(hsaInput.value))}
+              onBlur={() => this.props.dispatch(financeDisplayHsa())}
             /></td>
           </tr>
           <tr className="total-tax">
@@ -83,7 +90,7 @@ class Income extends React.Component {
               id="nIncome"
               type="text"
               className={nIncome.class}
-              value={nIncome.val}
+              value={nIncome.display}
               readOnly
             /></td>
           </tr>
@@ -96,7 +103,9 @@ class Income extends React.Component {
 const mapStateToProps = state => ({
   income1: state.finance.income.income1,
   gIncome: state.finance.income.gIncome,
-  nIncome: state.finance.income.nIncome
+  nIncome: state.finance.income.nIncome,
+  healthcare: state.finance.income.healthcare,
+  hsa: state.finance.income.hsa,
 })
 
 export default connect(mapStateToProps) (Income)

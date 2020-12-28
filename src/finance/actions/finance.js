@@ -1,4 +1,4 @@
-import { financeFormatIncome } from '../actions/income'
+import { financeEnterIncome } from '../actions/income'
 
 export const FINANCE_GREETING_BEGIN = 'FINANCE_GREETING_BEGIN'
 export const FINANCE_GREETING_SUCCESS = 'FINANCE_GREETING_SUCCESS'
@@ -26,7 +26,7 @@ export function fetchFinanceGreeting() {
       .then(res => res.json())
       .then((json) => {
         dispatch(fetchFinanceGreetingSuccess(json.message))
-        dispatch(financeFormatIncome(json.income1))
+        dispatch(financeEnterIncome(json.income1))
         return json
       })
       .catch(error => dispatch(fetchFinanceGreetingFailure(error)))

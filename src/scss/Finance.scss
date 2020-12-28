@@ -74,6 +74,10 @@
     @include table-color($income_color);
   }
 
+  .health {
+    @include table-color($health_color);
+  }
+
   .fica {
     @include table-color($fica_color);
   }

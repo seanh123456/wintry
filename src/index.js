@@ -2,12 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import rootReducer from './reducers'
+
+import auth from './authentication/reducers'
+import finance from './finance/reducers'
+import recipe from './recipe/reducers'
+
 import './scss/index.scss'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+
+const rootReducer = combineReducers({
+  auth,
+  finance,
+  recipe
+})
+
 
 const composeEnhancers = composeWithDevTools({})
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
