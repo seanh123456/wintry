@@ -26,14 +26,17 @@ export const financeEditHsa = () => ({
 
 export const financeUpdateIncome = income1 => ({
     type: FINANCE_UPDATE_INCOME,
+    income1: income1,
 })
 
 export const financeUpdateHealthcare = healthcare => ({
     type: FINANCE_UPDATE_HEALTHCARE,
+    healthcare: healthcare,
 })
 
 export const financeUpdateHsa = hsa => ({
     type: FINANCE_UPDATE_HSA,
+    hsa: hsa,
 })
 
 export const financeDisplayIncome = () => ({
@@ -48,7 +51,7 @@ export const financeDisplayHsa = () => ({
     type: FINANCE_DISPLAY_HSA,
 })
 
-export const financeUpdateCalculations = (income1, gIncome, nIncome, healthcare, hsa) => ({
+export const financeUpdateCalculations = (income1, healthcare, hsa, gIncome, nIncome,) => ({
     type: FINANCE_UPDATE_CALCULATIONS,
     income1: income1,
     healthcare: healthcare,
@@ -67,9 +70,10 @@ export function financeEnterIncome(income1) {
       hsa: state.finance.income.hsa.val,
     }
     var agi = calcAgi(values)
-    var totalTax = dispatch(financeCalcTax(agi))
+    var ficaTaxable = calcFicaTaxable(values)
+    var totalTax = dispatch(financeCalcTax(values.income1, ficaTaxable, agi))
     var nIncome = agi + totalTax
-    dispatch(financeUpdateCalculations(income1, values.income1, nIncome, values.healthcare, values.hsa))
+    dispatch(financeUpdateCalculations(income1, values.healthcare, values.hsa, values.income1, nIncome))
   }
 }
 
@@ -83,9 +87,10 @@ export function financeEnterHealthcare(healthcare) {
       hsa: state.finance.income.hsa.val,
     }
     var agi = calcAgi(values)
-    var totalTax = dispatch(financeCalcTax(agi))
+    var ficaTaxable = calcFicaTaxable(values)
+    var totalTax = dispatch(financeCalcTax(values.income1, ficaTaxable, agi))
     var nIncome = agi + totalTax
-    dispatch(financeUpdateCalculations(values.income1, values.income1, nIncome, healthcare, values.hsa))
+    dispatch(financeUpdateCalculations(values.income1, healthcare, values.hsa, values.income1, nIncome))
   }
 }
 
@@ -99,12 +104,17 @@ export function financeEnterHsa(hsa) {
       hsa: NumberFormatService.toNumber(hsa),
     }
     var agi = calcAgi(values)
-    var totalTax = dispatch(financeCalcTax(agi))
+    var ficaTaxable = calcFicaTaxable(values)
+    var totalTax = dispatch(financeCalcTax(values.income1, ficaTaxable, agi))
     var nIncome = agi + totalTax
-    dispatch(financeUpdateCalculations(values.income1, values.income1, nIncome, values.healthcare, hsa))
+    dispatch(financeUpdateCalculations(values.income1, values.healthcare, hsa, values.income1, nIncome))
   }
 }
 
 function calcAgi(values) {
+  return values.income1 + values.healthcare - values.hsa
+}
+
+function calcFicaTaxable(values) {
   return values.income1 + values.healthcare - values.hsa
 }

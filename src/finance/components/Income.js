@@ -22,9 +22,9 @@ class Income extends React.Component {
       }
     }
 
-        let income1Input
-        let healthcareInput
-        let hsaInput
+    let income1Input
+    let healthcareInput
+    let hsaInput
 
     return (
       <table className="financial">

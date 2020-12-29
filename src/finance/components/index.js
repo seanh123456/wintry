@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchFinanceGreeting } from '../actions/finance'
 import '../../scss/Finance.scss'
 
+import Options from './Options'
 import Income from './Income'
 import Tax from './Tax'
 
@@ -30,13 +31,20 @@ class Finance extends React.Component {
     }
 
     return (
-      <header className="App-header">
-        <div className="wrapper">
-          {greet}
-          <Income />
-          <Tax />
-        </div>
-      </header>
+      <div className="App">
+        <section>
+          <div className="wrapper">
+            {greet}
+            <Options />
+          </div>
+        </section>
+        <section>
+          <div className="wrapper">
+            <Income />
+            <Tax />
+          </div>
+        </section>
+      </div>
     )
   }
 }
