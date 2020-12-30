@@ -31,17 +31,21 @@ class Finance extends React.Component {
     }
 
     return (
-      <div className="App">
-        <section>
-          <div className="wrapper">
+      <div className="App-content">
+        <section className="wrapper">
+          <div>
             {greet}
             <Options />
           </div>
         </section>
-        <section>
-          <div className="wrapper">
-            <Income />
-            <Tax />
+        <section className="wrapper">
+          <div className="financial-tables">
+            <div className="financial-table">
+              <Income />
+            </div>
+            <div className="financial-table">
+              <Tax />
+            </div>
           </div>
         </section>
       </div>

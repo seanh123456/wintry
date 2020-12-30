@@ -3,7 +3,6 @@
 body {
   margin: 0;
   font-family: -apple-system,BlinkMacSystemFont,segoe ui,roboto,oxygen,ubuntu,cantarell,fira sans,droid sans,helvetica neue,sans-serif;
-  font-weight: 200;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -19,8 +18,7 @@ input {
 .wrapper {
   width: 860px;
   margin: 0 auto;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding: 0 40px 10px 40px;
   text-align: center;
   overflow: hidden;
 

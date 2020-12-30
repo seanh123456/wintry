@@ -2,10 +2,12 @@ import React from 'react'
 
 export default function Home() {
   return (
-    <header className="App-header">
-      <p>
-        life's dashboard
-      </p>
-    </header>
+    <div className="App-content">
+      <section className="wrapper">
+        <div>
+          <h1>Home page</h1>
+        </div>
+      </section>
+    </div>
   )
 }

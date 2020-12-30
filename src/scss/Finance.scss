@@ -1,23 +1,19 @@
 @import './colors';
 
+.financial-tables {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -.25rem;
+
+  .financial-table {
+    flex: 1 1 300px;
+    margin: .25rem;
+  }
+}
+
 .financial {
+  width: 100%;
   border-spacing: 0px;
-  float: left;
-
-  label {
-    display: inline-block;
-    width: 200px;
-    text-align: right;
-    font-weight: 500;
-    margin-right: 10px;
-  }
-
-  input {
-    background-color: transparent;
-    border: none;
-    width: 200px;
-    text-align: right;
-  }
 
   .positive {
     color: #009900;
@@ -33,12 +29,32 @@
 
   tr {
     th {
+      width: 50%;
       border-width: 1px 0 0 1px;
       border-style: solid;
+
+      label {
+        float: right;
+        text-align: right;
+        font-weight: 500;
+        margin-right: 10px;
+      }
     }
     td {
+      width: 50%;
       border-width: 1px 1px 0 1px;
       border-style: solid;
+      padding: 0;
+
+      input {
+        width: 100%;
+        width: -moz-available;          /* WebKit-based browsers will ignore this. */
+        width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+        width: fill-available;
+        background-color: transparent;
+        border: none;
+        text-align: right;
+      }
     }
 
     &:last-child {

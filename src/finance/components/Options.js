@@ -9,7 +9,7 @@ class Options extends React.Component {
 
     return (
       <div>
-        <label for="filingStatus">Filing Status: </label>
+        <label htmlFor="filingStatus">Filing Status: </label>
         <select id="filingStatus">
           <option name="sin">Single</option>
           <option name="mfj">Married filing jointly</option>

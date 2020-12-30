@@ -20,11 +20,13 @@ class SignIn extends React.Component {
     }
 
     return (
-      <header className="App-header">
-        <div className="wrapper">
-          {greet}
-        </div>
-      </header>
+      <div className="App-content">
+        <section className="wrapper">
+          <div>
+            {greet}
+          </div>
+        </section>
+      </div>
     )
   }
 }
