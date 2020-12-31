@@ -39,9 +39,9 @@ class Income extends React.Component {
               ref={node => (income1Input = node)}
               value={income1.editing ? income1.entry : income1.display}
               onKeyPress={blur}
-              onChange={() => this.props.dispatch(financeEnterIncome(income1Input.value))}
-              onFocus={() => this.props.dispatch(financeEditIncome(income1Input.value))}
-              onBlur={() => this.props.dispatch(financeDisplayIncome())}
+              onChange={() => this.props.financeEnterIncome(income1Input.value)}
+              onFocus={() => this.props.financeEditIncome(income1Input.value)}
+              onBlur={() => this.props.financeDisplayIncome()}
             /></td>
           </tr>
           <tr className="income">
@@ -64,9 +64,9 @@ class Income extends React.Component {
               ref={node => (healthcareInput = node)}
               value={healthcare.editing ? healthcare.entry : healthcare.display}
               onKeyPress={blur}
-              onChange={() => this.props.dispatch(financeEnterHealthcare(healthcareInput.value))}
-              onFocus={() => this.props.dispatch(financeEditHealthcare(healthcareInput.value))}
-              onBlur={() => this.props.dispatch(financeDisplayHealthcare())}
+              onChange={() => this.props.financeEnterHealthcare(healthcareInput.value)}
+              onFocus={() => this.props.financeEditHealthcare(healthcareInput.value)}
+              onBlur={() => this.props.financeDisplayHealthcare()}
             /></td>
           </tr>
           <tr className="health">
@@ -79,9 +79,9 @@ class Income extends React.Component {
               ref={node => (hsaInput = node)}
               value={hsa.editing ? hsa.entry : hsa.display}
               onKeyPress={blur}
-              onChange={() => this.props.dispatch(financeEnterHsa(hsaInput.value))}
-              onFocus={() => this.props.dispatch(financeEditHsa(hsaInput.value))}
-              onBlur={() => this.props.dispatch(financeDisplayHsa())}
+              onChange={() => this.props.financeEnterHsa(hsaInput.value)}
+              onFocus={() => this.props.financeEditHsa(hsaInput.value)}
+              onBlur={() => this.props.financeDisplayHsa()}
             /></td>
           </tr>
           <tr className="total-tax">
@@ -107,5 +107,16 @@ const mapStateToProps = state => ({
   healthcare: state.finance.income.healthcare,
   hsa: state.finance.income.hsa,
 })
+const mapDispatchToProps = (dispatch, props) => ({
+  financeEnterIncome: income => { dispatch(financeEnterIncome(income)) },
+  financeEditIncome: income => { dispatch(financeEditIncome(income)) },
+  financeDisplayIncome: () => { dispatch(financeDisplayIncome()) },
+  financeEnterHealthcare: cost => { dispatch(financeEnterHealthcare(cost)) },
+  financeEditHealthcare: cost => { dispatch(financeEditHealthcare(cost)) },
+  financeDisplayHealthcare: () => { dispatch(financeDisplayHealthcare()) },
+  financeEnterHsa: contribution => { dispatch(financeEnterHsa(contribution)) },
+  financeEditHsa: contribution => { dispatch(financeEditHsa(contribution)) },
+  financeDisplayHsa: () => { dispatch(financeDisplayHsa()) },
+})
 
-export default connect(mapStateToProps) (Income)
+export default connect(mapStateToProps, mapDispatchToProps) (Income)

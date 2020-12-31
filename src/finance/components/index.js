@@ -9,14 +9,14 @@ import Tax from './Tax'
 
 class Finance extends React.Component {
   componentDidMount() {
-    this.props.getGreeting()
+    this.props.fetchFinanceGreeting()
   }
 
   render() {
     const {
       greeting,
       error,
-      loading
+      loading,
     } = this.props
 
     var greet = <h3>Finance dashboard says: {greeting}</h3>
@@ -57,6 +57,8 @@ const mapStateToProps = (state, props) => ({
   loading: state.finance.finance.loading,
   error: state.finance.finance.error,
 })
-const mapDispatchToProps = (dispatch, props) => ({ getGreeting: () => {dispatch(fetchFinanceGreeting())} })
+const mapDispatchToProps = (dispatch, props) => ({
+  fetchFinanceGreeting: () => {dispatch(fetchFinanceGreeting())}
+})
 
 export default connect(mapStateToProps, mapDispatchToProps) (Finance)
