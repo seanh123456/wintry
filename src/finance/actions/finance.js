@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { financeEnterIncome } from '../actions/income'
 
 export const FINANCE_GREETING_BEGIN = 'FINANCE_GREETING_BEGIN'
@@ -5,7 +6,7 @@ export const FINANCE_GREETING_SUCCESS = 'FINANCE_GREETING_SUCCESS'
 export const FINANCE_GREETING_FAILURE = 'FINANCE_GREETING_FAILURE'
 
 export const fetchFinanceGreetingBegin = () => ({
-  type: FINANCE_GREETING_BEGIN
+    type: FINANCE_GREETING_BEGIN
 })
 
 export const fetchFinanceGreetingSuccess = message => ({
@@ -21,21 +22,13 @@ export const fetchFinanceGreetingFailure = error => ({
 export function fetchFinanceGreeting() {
   return dispatch => {
     dispatch(fetchFinanceGreetingBegin())
-    return fetch("/api/finance/")
-      .then(handleErrors)
-      .then(res => res.json())
-      .then((json) => {
-        dispatch(fetchFinanceGreetingSuccess(json.message))
-        dispatch(financeEnterIncome(json.income1))
-        return json
+
+    return axios.get('/api/finance/')
+      .then((response) => {
+        dispatch(fetchFinanceGreetingSuccess(response.data.message))
+        dispatch(financeEnterIncome(response.data.income1))
+        return response
       })
       .catch(error => dispatch(fetchFinanceGreetingFailure(error)))
   }
-}
-
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
 }
