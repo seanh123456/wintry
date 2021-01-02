@@ -1,118 +1,113 @@
 import { financeCalcTax } from '../actions/tax'
 import NumberFormatService from '../service/NumberFormatService'
 
-export const FINANCE_EDIT_INCOME = 'FINANCE_EDIT_INCOME'
-export const FINANCE_EDIT_HEALTHCARE = 'FINANCE_EDIT_HEALTHCARE'
-export const FINANCE_EDIT_HSA = 'FINANCE_EDIT_HSA'
-export const FINANCE_UPDATE_INCOME = 'FINANCE_UPDATE_INCOME'
-export const FINANCE_UPDATE_HEALTHCARE = 'FINANCE_UPDATE_HEALTHCARE'
-export const FINANCE_UPDATE_HSA = 'FINANCE_UPDATE_HSA'
-export const FINANCE_DISPLAY_INCOME = 'FINANCE_DISPLAY_INCOME'
-export const FINANCE_DISPLAY_HEALTHCARE = 'FINANCE_DISPLAY_HEALTHCARE'
-export const FINANCE_DISPLAY_HSA = 'FINANCE_DISPLAY_HSA'
-export const FINANCE_UPDATE_CALCULATIONS = 'FINANCE_UPDATE_CALCULATIONS'
+export const ACTION_TYPES = {
+  FINANCE_EDIT_ENTRY: 'FINANCE_EDIT_ENTRY',
+  FINANCE_UPDATE_ENTRY: 'FINANCE_UPDATE_ENTRY',
+  FINANCE_DISPLAY_ENTRY: 'FINANCE_DISPLAY_ENTRY',
+  FINANCE_UPDATE_CALCULATIONS: 'FINANCE_UPDATE_CALCULATIONS',
+}
 
-export const financeEditIncome = () => ({
-    type: FINANCE_EDIT_INCOME,
+export const financeEditEntry = name => ({
+    type: ACTION_TYPES.FINANCE_EDIT_ENTRY,
+    name: name
 })
 
-export const financeEditHealthcare = () => ({
-    type: FINANCE_EDIT_HEALTHCARE,
+export const financeUpdateEntry = (name, value) => ({
+    type: ACTION_TYPES.FINANCE_UPDATE_ENTRY,
+    name: name,
+    value: value,
 })
 
-export const financeEditHsa = () => ({
-    type: FINANCE_EDIT_HSA,
+export const financeDisplayEntry = name => ({
+    type: ACTION_TYPES.FINANCE_DISPLAY_ENTRY,
+    name: name
 })
 
-export const financeUpdateIncome = income1 => ({
-    type: FINANCE_UPDATE_INCOME,
-    income1: income1,
-})
-
-export const financeUpdateHealthcare = healthcare => ({
-    type: FINANCE_UPDATE_HEALTHCARE,
-    healthcare: healthcare,
-})
-
-export const financeUpdateHsa = hsa => ({
-    type: FINANCE_UPDATE_HSA,
-    hsa: hsa,
-})
-
-export const financeDisplayIncome = () => ({
-    type: FINANCE_DISPLAY_INCOME,
-})
-
-export const financeDisplayHealthcare = () => ({
-    type: FINANCE_DISPLAY_HEALTHCARE,
-})
-
-export const financeDisplayHsa = () => ({
-    type: FINANCE_DISPLAY_HSA,
-})
-
-export const financeUpdateCalculations = (income1, healthcare, hsa, gIncome, nIncome,) => ({
-    type: FINANCE_UPDATE_CALCULATIONS,
+export const financeUpdateCalculations = (income1, healthcare, hsa, t401k, gIncome, nIncome,) => ({
+    type: ACTION_TYPES.FINANCE_UPDATE_CALCULATIONS,
     income1: income1,
     healthcare: healthcare,
     hsa: hsa,
+    t401k: t401k,
     gIncome: gIncome,
     nIncome: nIncome,
 })
 
-export function financeEnterIncome(income1) {
+export function financeEnterIncome(name, value) {
   return (dispatch, getState) => {
-    dispatch(financeUpdateIncome(income1))
+    dispatch(financeUpdateEntry(name, value))
     var state = getState()
     var values = {
-      income1: NumberFormatService.toNumber(income1),
+      income1: NumberFormatService.toNumber(value),
       healthcare: state.finance.income.healthcare.val,
       hsa: state.finance.income.hsa.val,
+      t401k: state.finance.income.t401k.val,
     }
     var agi = calcAgi(values)
     var ficaTaxable = calcFicaTaxable(values)
     var totalTax = dispatch(financeCalcTax(values.income1, ficaTaxable, agi))
     var nIncome = agi + totalTax
-    dispatch(financeUpdateCalculations(income1, values.healthcare, values.hsa, values.income1, nIncome))
+    dispatch(financeUpdateCalculations(value, values.healthcare, values.hsa, values.t401k, values.income1, nIncome))
   }
 }
 
-export function financeEnterHealthcare(healthcare) {
+export function financeEnterHealthcare(name, value) {
   return (dispatch, getState) => {
-    dispatch(financeUpdateHealthcare(healthcare))
+    dispatch(financeUpdateEntry(name, value))
     var state = getState()
     var values = {
       income1: state.finance.income.income1.val,
-      healthcare: NumberFormatService.toNegNumber(healthcare),
+      healthcare: NumberFormatService.toNegNumber(value),
       hsa: state.finance.income.hsa.val,
+      t401k: state.finance.income.t401k.val,
     }
     var agi = calcAgi(values)
     var ficaTaxable = calcFicaTaxable(values)
     var totalTax = dispatch(financeCalcTax(values.income1, ficaTaxable, agi))
     var nIncome = agi + totalTax
-    dispatch(financeUpdateCalculations(values.income1, healthcare, values.hsa, values.income1, nIncome))
+    dispatch(financeUpdateCalculations(values.income1, value, values.hsa, values.t401k, values.income1, nIncome))
   }
 }
 
-export function financeEnterHsa(hsa) {
+export function financeEnterHsa(name, value) {
   return (dispatch, getState) => {
-    dispatch(financeUpdateHsa(hsa))
+    dispatch(financeUpdateEntry(name, value))
     var state = getState()
     var values = {
       income1: state.finance.income.income1.val,
       healthcare: state.finance.income.healthcare.val,
-      hsa: NumberFormatService.toNumber(hsa),
+      hsa: NumberFormatService.toNumber(value),
+      t401k: state.finance.income.t401k.val,
     }
     var agi = calcAgi(values)
     var ficaTaxable = calcFicaTaxable(values)
     var totalTax = dispatch(financeCalcTax(values.income1, ficaTaxable, agi))
     var nIncome = agi + totalTax
-    dispatch(financeUpdateCalculations(values.income1, values.healthcare, hsa, values.income1, nIncome))
+    dispatch(financeUpdateCalculations(values.income1, values.healthcare, value, values.t401k, values.income1, nIncome))
+  }
+}
+
+export function financeEnterT401k(name, value) {
+  return (dispatch, getState) => {
+    dispatch(financeUpdateEntry(name, value))
+    var state = getState()
+    var values = {
+      income1: state.finance.income.income1.val,
+      healthcare: state.finance.income.healthcare.val,
+      hsa: state.finance.income.hsa.val,
+      t401k: NumberFormatService.toNumber(value),
+    }
+    var agi = calcAgi(values)
+    var ficaTaxable = calcFicaTaxable(values)
+    var totalTax = dispatch(financeCalcTax(values.income1, ficaTaxable, agi))
+    var nIncome = agi + totalTax
+    dispatch(financeUpdateCalculations(values.income1, values.healthcare, values.hsa, value, values.income1, nIncome))
   }
 }
 
 function calcAgi(values) {
-  return values.income1 + values.healthcare - values.hsa
+  return values.income1 + values.healthcare - values.hsa - values.t401k
 }
 
 function calcFicaTaxable(values) {

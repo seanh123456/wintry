@@ -15,9 +15,9 @@ class Tax extends React.Component {
       <table className="financial">
         <tbody>
           <tr className="fica">
-            <th><label htmlFor="effFITax">Effective FICA Tax:</label></th>
+            <th><label htmlFor="ficaTax">FICA Tax:</label></th>
             <td><input
-              id="effFITax"
+              id="ficaTax"
               type="text"
               className={effFITax.class}
               value={effFITax.val}
@@ -25,9 +25,9 @@ class Tax extends React.Component {
             /></td>
           </tr>
           <tr className="federal">
-            <th><label htmlFor="effFTax">Effective Federal Tax:</label></th>
+            <th><label htmlFor="federalTax">Federal Tax:</label></th>
             <td><input
-              id="effFTax"
+              id="federalTax"
               type="text"
               className={effFTax.class}
               value={effFTax.val}
@@ -35,9 +35,9 @@ class Tax extends React.Component {
             /></td>
           </tr>
           <tr className="state">
-            <th><label htmlFor="effSTax">Effective State Tax:</label></th>
+            <th><label htmlFor="stateTax">State Tax:</label></th>
             <td><input
-              id="effSTax"
+              id="stateTax"
               type="text"
               className={effSTax.class}
               value={effSTax.val}
@@ -45,9 +45,9 @@ class Tax extends React.Component {
             /></td>
           </tr>
           <tr className="local">
-            <th><label htmlFor="effLTax">Effective Local Tax:</label></th>
+            <th><label htmlFor="localTax">Local Tax:</label></th>
             <td><input
-              id="effLTax"
+              id="localTax"
               type="text"
               className={effLTax.class}
               value={effLTax.val}
