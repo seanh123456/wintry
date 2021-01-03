@@ -5,12 +5,14 @@ import {
 } from '../actions/income'
 
 const initialState = {
-  income1: { entry: '', editing: false, val: 0.0, display: '$0.00', class: '' },
-  healthcare: { entry: '', editing: false, val: 0.0, display: '$0.00', class: '' },
-  hsa: { entry: '', editing: false, val: 0.0, display: '$0.00', class: '' },
-  t401k: { entry: '', editing: false, val: 0.0, display: '$0.00', class: '' },
-  gIncome: { val: 0.0, display: '$0.00', class: '' },
-  nIncome: { val: 0.0, display: '$0.00', class: '' },
+  income1: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  healthcare: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  emplHsa: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  hsa: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  emplT401k: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  t401k: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  gIncome: { val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  nIncome: { val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
 }
 
 export default function inputs(state = initialState, action) {
@@ -46,36 +48,56 @@ export default function inputs(state = initialState, action) {
         income1: {
           ...state.income1,
           val: NumberFormatService.toNumber(action.income1),
-          display: NumberFormatService.toCurrency(action.income1),
-          class: NumberFormatService.getColorClass(action.income1),
+          annual: NumberFormatService.toCurrency(action.income1),
+          monthly: NumberFormatService.toCurrency(action.income1 / 12),
+          paycheck: NumberFormatService.toCurrency(action.income1 / 26),
         },
         healthcare: {
           ...state.healthcare,
           val: NumberFormatService.toNegNumber(action.healthcare),
-          display: NumberFormatService.toCurrency(NumberFormatService.toNegNumber(action.healthcare)),
-          class: NumberFormatService.getColorClass(NumberFormatService.toNegNumber(action.healthcare)),
+          annual: NumberFormatService.toCurrency(NumberFormatService.toNegNumber(action.healthcare)),
+          monthly: NumberFormatService.toCurrency(NumberFormatService.toNegNumber(action.healthcare / 12)),
+          paycheck: NumberFormatService.toCurrency(NumberFormatService.toNegNumber(action.healthcare / 26)),
+        },
+        emplHsa: {
+          ...state.emplHsa,
+          val: NumberFormatService.toNumber(action.emplHsa),
+          annual: NumberFormatService.toCurrency(action.emplHsa),
+          monthly: NumberFormatService.toCurrency(action.emplHsa / 12),
+          paycheck: NumberFormatService.toCurrency(action.emplHsa / 26),
         },
         hsa: {
           ...state.hsa,
           val: NumberFormatService.toNumber(action.hsa),
-          display: NumberFormatService.toCurrency(action.hsa),
-          class: NumberFormatService.getColorClass(action.hsa),
+          annual: NumberFormatService.toCurrency(action.hsa),
+          monthly: NumberFormatService.toCurrency(action.hsa / 12),
+          paycheck: NumberFormatService.toCurrency(action.hsa / 26),
+        },
+        emplT401k: {
+          ...state.emplT401k,
+          val: NumberFormatService.toNumber(action.emplT401k),
+          annual: NumberFormatService.toCurrency(action.emplT401k),
+          monthly: NumberFormatService.toCurrency(action.emplT401k / 12),
+          paycheck: NumberFormatService.toCurrency(action.emplT401k / 26),
         },
         t401k: {
           ...state.t401k,
           val: NumberFormatService.toNumber(action.t401k),
-          display: NumberFormatService.toCurrency(action.t401k),
-          class: NumberFormatService.getColorClass(action.t401k),
+          annual: NumberFormatService.toCurrency(action.t401k),
+          monthly: NumberFormatService.toCurrency(action.t401k / 12),
+          paycheck: NumberFormatService.toCurrency(action.t401k / 26),
         },
         gIncome: {
           val: NumberFormatService.toNumber(action.gIncome),
-          display: NumberFormatService.toCurrency(action.gIncome),
-          class: NumberFormatService.getColorClass(action.gIncome),
+          annual: NumberFormatService.toCurrency(action.gIncome),
+          monthly: NumberFormatService.toCurrency(action.gIncome / 12),
+          paycheck: NumberFormatService.toCurrency(action.gIncome / 26),
         },
         nIncome: {
           val: NumberFormatService.toNumber(action.nIncome),
-          display: NumberFormatService.toCurrency(action.nIncome),
-          class: NumberFormatService.getColorClass(action.nIncome),
+          annual: NumberFormatService.toCurrency(action.nIncome),
+          monthly: NumberFormatService.toCurrency(action.nIncome / 12),
+          paycheck: NumberFormatService.toCurrency(action.nIncome / 26),
         },
       }
     default:

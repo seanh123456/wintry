@@ -26,43 +26,68 @@ const stateBrackets = [
 
 export const FINANCE_POP_TAX = 'FINANCE_POP_TAX'
 
-export const financePopTax = (effFicaTax, effFedTax, effStateTax, effLocalTax, totalTax) => ({
+export const financePopTax = (ficaTax, federalTax, stateTax, localTax, totalTax) => ({
     type: FINANCE_POP_TAX,
-    effFITax: { val: NumberFormatService.toCurrency(effFicaTax), class: NumberFormatService.getColorClass(effFicaTax)},
-    effFTax: { val: NumberFormatService.toCurrency(effFedTax), class: NumberFormatService.getColorClass(effFedTax)},
-    effSTax: { val: NumberFormatService.toCurrency(effStateTax), class: NumberFormatService.getColorClass(effStateTax)},
-    effLTax: { val: NumberFormatService.toCurrency(effLocalTax), class: NumberFormatService.getColorClass(effLocalTax)},
-    totalTax: { val: NumberFormatService.toCurrency(totalTax), class: NumberFormatService.getColorClass(totalTax)},
+    ficaTax: {
+      annual: NumberFormatService.toCurrency(ficaTax),
+      monthly: NumberFormatService.toCurrency(ficaTax / 12),
+      paycheck: NumberFormatService.toCurrency(ficaTax / 26),
+      class: NumberFormatService.getColorClass(ficaTax),
+    },
+    federalTax: {
+      annual: NumberFormatService.toCurrency(federalTax),
+      monthly: NumberFormatService.toCurrency(federalTax / 12),
+      paycheck: NumberFormatService.toCurrency(federalTax / 26),
+      class: NumberFormatService.getColorClass(federalTax),
+    },
+    stateTax: {
+      annual: NumberFormatService.toCurrency(stateTax),
+      monthly: NumberFormatService.toCurrency(stateTax / 12),
+      paycheck: NumberFormatService.toCurrency(stateTax / 26),
+      class: NumberFormatService.getColorClass(stateTax),
+    },
+    localTax: {
+      annual: NumberFormatService.toCurrency(localTax),
+      monthly: NumberFormatService.toCurrency(localTax / 12),
+      paycheck: NumberFormatService.toCurrency(localTax / 26),
+      class: NumberFormatService.getColorClass(localTax),
+    },
+    totalTax: {
+      annual: NumberFormatService.toCurrency(totalTax),
+      monthly: NumberFormatService.toCurrency(totalTax / 12),
+      paycheck: NumberFormatService.toCurrency(totalTax / 26),
+      class: NumberFormatService.getColorClass(totalTax),
+    },
 })
 
-export function financeCalcTax(gIncome, ficaTaxable, agi) {
+export function financeCalcTax(gIncome, ficaAgi, agi) {
   return dispatch => {
-    var effFicaTax = calcFicaTax('mfj', ficaTaxable)
+    var ficaTax = calcFicaTax('mfj', ficaAgi)
     var federalAgi = calcFederalAgi('mfj', agi)
-    var effFedTax = calcFederalTax('mfj', federalAgi)
+    var federalTax = calcFederalTax('mfj', federalAgi)
     var stateAgi = calcStateAgi('mfj', federalAgi, agi)
-    var effStateTax = calcStateTax('mfj', stateAgi)
-    var effLocalTax = calcLocalTax('mfj', stateAgi)
-    var totalTax = effFicaTax + effFedTax + effStateTax + effLocalTax
-    dispatch(financePopTax(effFicaTax, effFedTax, effStateTax, effLocalTax, totalTax))
+    var stateTax = calcStateTax('mfj', stateAgi)
+    var localTax = calcLocalTax('mfj', stateAgi)
+    var totalTax = ficaTax + federalTax + stateTax + localTax
+    dispatch(financePopTax(ficaTax, federalTax, stateTax, localTax, totalTax))
 
     return totalTax
   }
 }
 
-function calcFicaTax(filingStatus, ficaTaxable) {
-  var socialSecurityTax = -1 * Math.min(ficaTaxable, SOCIAL_SECURITY_MAX_TAXABLE) * SOCIAL_SECURITY_TAX_RATE
-  var medicareTax = -1 * ficaTaxable * MEDICARE_TAX_RATE
+function calcFicaTax(filingStatus, ficaAgi) {
+  var socialSecurityTax = -1 * Math.min(ficaAgi, SOCIAL_SECURITY_MAX_TAXABLE) * SOCIAL_SECURITY_TAX_RATE
+  var medicareTax = -1 * ficaAgi * MEDICARE_TAX_RATE
 
   return socialSecurityTax + medicareTax
 }
 
 function calcFederalAgi(filingStatus, federalAgi) {
-  return federalAgi - FEDERAL_STANDARD_DEDUCTION * 2
+  return Math.max(federalAgi - FEDERAL_STANDARD_DEDUCTION * 2, 0)
 }
 
-function calcFederalTax(filingStatus, fedTaxable) {
-  var fedTax = calculateTax(fedTaxable, fedBrackets)
+function calcFederalTax(filingStatus, federalAgi) {
+  var fedTax = calculateTax(federalAgi, fedBrackets)
 
   var numChildren = 1
   fedTax += numChildren * 2000
@@ -70,22 +95,21 @@ function calcFederalTax(filingStatus, fedTaxable) {
   return fedTax
 }
 
-function calcStateAgi(filingStatus, fedTaxable, agi) {
+function calcStateAgi(filingStatus, federalAgi, agi) {
   var stateDeduction = Math.min(Math.max(agi * .15, 3100), 4600)
 
   var stateExemption = 0
   var numExemptions = 3;
 
-  var fedTaxable = agi - FEDERAL_STANDARD_DEDUCTION * 2
-  if (fedTaxable <= 150000) {
+  if (federalAgi <= 150000) {
     stateExemption = 3200
-  } else if (fedTaxable > 150000 && fedTaxable <= 175000) {
+  } else if (federalAgi > 150000 && federalAgi <= 175000) {
     stateExemption = 1600
-  } else if (fedTaxable > 175000 && fedTaxable <= 200000) {
+  } else if (federalAgi > 175000 && federalAgi <= 200000) {
     stateExemption = 800
   }
 
-  return agi - stateDeduction - stateExemption * numExemptions
+  return Math.max(agi - stateDeduction - stateExemption * numExemptions, 0)
 }
 
 function calcStateTax(filingStatus, stateAgi) {

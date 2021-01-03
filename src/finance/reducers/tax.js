@@ -3,11 +3,11 @@ import {
 } from '../actions/tax'
 
 const initialState = {
-  effFITax: { val: '$0.00', class: '' },
-  effFTax: { val: '$0.00', class: '' },
-  effSTax: { val: '$0.00', class: '' },
-  effLTax: { val: '$0.00', class: '' },
-  totalTax: { val: '$0.00', class: '' },
+  ficaTax: { annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  federalTax: { annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  stateTax: { annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  localTax: { annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  totalTax: { annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
 }
 
 export default function tax(state = initialState, action) {
@@ -15,10 +15,10 @@ export default function tax(state = initialState, action) {
     case FINANCE_POP_TAX:
       return {
         ...state,
-        effFITax: action.effFITax,
-        effFTax: action.effFTax,
-        effSTax: action.effSTax,
-        effLTax: action.effLTax,
+        ficaTax: action.ficaTax,
+        federalTax: action.federalTax,
+        stateTax: action.stateTax,
+        localTax: action.localTax,
         totalTax: action.totalTax,
       }
     default:

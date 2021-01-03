@@ -1,3 +1,4 @@
+@import './reset';
 @import './colors';
 
 body {
@@ -6,29 +7,42 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  font-size: 16px;
   background-color: $body_color;
   color: $text_color;
   min-width:1060px;
 }
 
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.3em; }
+h4 { font-size: 1em; }
+h5 { font-size: 0.8em; }
+h6 { font-size: 0.7em; }
+
 input {
   font-family: -apple-system,BlinkMacSystemFont,segoe ui,roboto,oxygen,ubuntu,cantarell,fira sans,droid sans,helvetica neue,sans-serif;
+  font-size: 16px;
 }
 
 .wrapper {
   width: 860px;
+  background-color: lighten($body_color, 5%);
   margin: 0 auto;
   padding: 0 40px 10px 40px;
   text-align: center;
   overflow: hidden;
 
   &.hero {
-    padding-top: 100;
+    padding-top: 100px;
   }
 
   &.no-pad {
-    padding-left: 0px;
-    padding-right: 0px;
+    padding: 0;
+    background-color: inherit;
+  }
+
+  :not(.no-pad) {
   }
 }
 

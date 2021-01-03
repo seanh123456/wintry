@@ -4,65 +4,51 @@ import { connect } from 'react-redux'
 class Tax extends React.Component {
   render() {
     const {
-      effFITax,
-      effFTax,
-      effSTax,
-      effLTax,
+      ficaTax,
+      federalTax,
+      stateTax,
+      localTax,
       totalTax,
     } = this.props
 
     return (
       <table className="financial">
         <tbody>
+          <tr className="table_header">
+            <th>Tax</th>
+            <th>Annual</th>
+            <th>Monthly</th>
+            <th>Paycheck</th>
+          </tr>
           <tr className="fica">
-            <th><label htmlFor="ficaTax">FICA Tax:</label></th>
-            <td><input
-              id="ficaTax"
-              type="text"
-              className={effFITax.class}
-              value={effFITax.val}
-              readOnly
-            /></td>
+            <th>FICA Tax:</th>
+            <td>{ficaTax.annual}</td>
+            <td>{ficaTax.monthly}</td>
+            <td>{ficaTax.paycheck}</td>
           </tr>
           <tr className="federal">
-            <th><label htmlFor="federalTax">Federal Tax:</label></th>
-            <td><input
-              id="federalTax"
-              type="text"
-              className={effFTax.class}
-              value={effFTax.val}
-              readOnly
-            /></td>
+            <th>Federal Tax:</th>
+            <td>{federalTax.annual}</td>
+            <td>{federalTax.monthly}</td>
+            <td>{federalTax.paycheck}</td>
           </tr>
           <tr className="state">
-            <th><label htmlFor="stateTax">State Tax:</label></th>
-            <td><input
-              id="stateTax"
-              type="text"
-              className={effSTax.class}
-              value={effSTax.val}
-              readOnly
-            /></td>
+            <th>State Tax:</th>
+            <td>{stateTax.annual}</td>
+            <td>{stateTax.monthly}</td>
+            <td>{stateTax.paycheck}</td>
           </tr>
           <tr className="local">
-            <th><label htmlFor="localTax">Local Tax:</label></th>
-            <td><input
-              id="localTax"
-              type="text"
-              className={effLTax.class}
-              value={effLTax.val}
-              readOnly
-            /></td>
+            <th>Local Tax:</th>
+            <td>{localTax.annual}</td>
+            <td>{localTax.monthly}</td>
+            <td>{localTax.paycheck}</td>
           </tr>
           <tr className="total-tax">
-            <th><label htmlFor="totalTax">Total Tax:</label></th>
-            <td><input
-              id="totalTax"
-              type="text"
-              className={totalTax.class}
-              value={totalTax.val}
-              readOnly
-            /></td>
+            <th>Total Tax:</th>
+            <td>{totalTax.annual}</td>
+            <td>{totalTax.monthly}</td>
+            <td>{totalTax.paycheck}</td>
           </tr>
         </tbody>
       </table>
@@ -71,10 +57,10 @@ class Tax extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  effFITax: state.finance.tax.effFITax,
-  effFTax: state.finance.tax.effFTax,
-  effSTax: state.finance.tax.effSTax,
-  effLTax: state.finance.tax.effLTax,
+  ficaTax: state.finance.tax.ficaTax,
+  federalTax: state.finance.tax.federalTax,
+  stateTax: state.finance.tax.stateTax,
+  localTax: state.finance.tax.localTax,
   totalTax: state.finance.tax.totalTax,
 })
 

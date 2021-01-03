@@ -14,13 +14,22 @@
 .financial {
   width: 100%;
   border-spacing: 0px;
+  table-layout: fixed;
+  vertical-align: middle;
 
-  .positive {
-    color: #009900;
+  th {
+    font-weight: 500;
   }
 
-  .negative {
-    color: #990000;
+  input {
+    width: 100%;
+    width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    width: stretch;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    text-align: right;
   }
 
   input:focus {
@@ -28,33 +37,21 @@
   }
 
   tr {
-    th {
-      width: 50%;
-      border-width: 1px 0 0 1px;
-      border-style: solid;
-
-      label {
-        float: right;
-        text-align: right;
-        font-weight: 500;
-        margin-right: 10px;
+    &:not(:first-child) {
+      text-align: right;
+      th {
+      padding-right: 10px;
       }
     }
-    td {
-      width: 50%;
+    th, td {
+      border-width: 1px 0 0 1px;
+      border-style: solid;
+      padding: 1px 2px;
+      line-height: 21px;
+    }
+    th:last-child, td:last-child {
       border-width: 1px 1px 0 1px;
       border-style: solid;
-      padding: 0;
-
-      input {
-        width: 100%;
-        width: -moz-available;          /* WebKit-based browsers will ignore this. */
-        width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
-        width: stretch;
-        background-color: transparent;
-        border: none;
-        text-align: right;
-      }
     }
 
     &:last-child {
@@ -86,6 +83,10 @@
     }
   }
 
+  .table_header {
+    @include table-color($table_header_color);
+  }
+
   .income {
     @include table-color($income_color);
   }
@@ -112,6 +113,10 @@
 
   .local {
     @include table-color($local_color);
+  }
+
+  .net_income {
+    @include table-color($net_income_color);
   }
 
   .total-tax {
