@@ -26,7 +26,7 @@ export function fetchFinanceGreeting() {
     return axios.get('/api/finance/')
       .then((response) => {
         dispatch(fetchFinanceGreetingSuccess(response.data.message))
-        dispatch(financeEnterIncome('income1', response.data.income1))
+        dispatch(financeEnterEntry('income1', response.data.income1))
         return response
       })
       .catch(error => dispatch(fetchFinanceGreetingFailure(error)))

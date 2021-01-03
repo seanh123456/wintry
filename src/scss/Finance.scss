@@ -103,6 +103,18 @@
     @include table-color($emp_ret_color);
   }
 
+  .trad_ira {
+    @include table-color($trad_ira_color);
+  }
+
+  .roth_ira {
+    @include table-color($roth_ira_color);
+  }
+
+  .brokerage {
+    @include table-color($brokerage_color);
+  }
+
   .federal {
     @include table-color($federal_color);
   }
@@ -117,6 +129,22 @@
 
   .net_income {
     @include table-color($net_income_color);
+  }
+
+  .gross_comp {
+    @include table-color($gross_comp_color);
+  }
+
+  .net_comp {
+    @include table-color($net_comp_color);
+  }
+
+  .net_take_home {
+    @include table-color($net_take_home_color);
+  }
+
+  .savings {
+    @include table-color($savings_color);
   }
 
   .total-tax {
