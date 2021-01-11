@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { financeEnterIncome } from '../actions/income'
+import { financeEnterEntry } from '../actions/income'
 
 export const FINANCE_GREETING_BEGIN = 'FINANCE_GREETING_BEGIN'
 export const FINANCE_GREETING_SUCCESS = 'FINANCE_GREETING_SUCCESS'
