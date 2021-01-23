@@ -27,7 +27,7 @@ export const financeDisplayEntry = name => ({
 export const financeUpdateCalculations = (values, nIncome, gComp, nComp, nTakeHome, savings,) => ({
     type: ACTION_TYPES.FINANCE_UPDATE_CALCULATIONS,
     values: values,
-    gIncome: values.income1,
+    gIncome: values.taxable,
     nIncome: nIncome,
     gComp: gComp,
     nComp: nComp,
@@ -45,9 +45,9 @@ export function financeEnterEntry(name, value) {
 
     var agi = calcAgi(values)
     var ficaTaxable = calcFicaTaxable(values)
-    var totalTax = dispatch(financeCalcTax(values.income1, ficaTaxable, agi))
+    var totalTax = dispatch(financeCalcTax(values.taxable, ficaTaxable, agi))
     var nIncome = agi + totalTax
-    var gComp = values.income1 + values.emplHsa + values.emplT401k
+    var gComp = values.taxable + values.nonTaxable + values.capitalGains + values.emplHsa + values.emplT401k
     var nComp = gComp + totalTax + values.healthcare
     var nTakeHome = nIncome - values.rIra - values.brokerage
     var savings = values.emplHsa + values.hsa + values.emplT401k + values.t401k + values.tIra + values.rIra + values.brokerage
@@ -59,7 +59,9 @@ export function financeEnterEntry(name, value) {
 
 function getValues(state) {
   return {
-    income1: state.finance.income.income1.val,
+    taxable: state.finance.income.taxable.val,
+    nonTaxable: state.finance.income.nonTaxable.val,
+    capitalGains: state.finance.income.capitalGains.val,
     healthcare: state.finance.income.healthcare.val,
     emplHsa: state.finance.income.emplHsa.val,
     hsa: state.finance.income.hsa.val,
@@ -72,9 +74,9 @@ function getValues(state) {
 }
 
 function calcAgi(values) {
-  return values.income1 + values.healthcare - values.hsa - values.t401k - values.tIra
+  return values.taxable + values.healthcare - values.hsa - values.t401k - values.tIra
 }
 
 function calcFicaTaxable(values) {
-  return values.income1 + values.healthcare - values.hsa
+  return values.taxable + values.healthcare - values.hsa
 }

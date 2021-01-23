@@ -5,6 +5,8 @@ import '../../scss/Finance.scss'
 
 import Options from './Options'
 import Income from './Income'
+import Deductions from './Deductions'
+import Calculations from './Calculations'
 import Tax from './Tax'
 
 class Finance extends React.Component {
@@ -41,6 +43,12 @@ class Finance extends React.Component {
           <div className="financial-tables">
             <div className="financial-table">
               <Income />
+            </div>
+            <div className="financial-table">
+              <Deductions />
+            </div>
+            <div className="financial-table">
+              <Calculations />
             </div>
             <div className="financial-table">
               <Tax />

@@ -2,11 +2,11 @@
 
 .financial-tables {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   margin: -.25rem;
 
   .financial-table {
-    flex: 1 1 300px;
+    flex: 1 0 450px;
     margin: .25rem;
   }
 }
@@ -16,6 +16,7 @@
   border-spacing: 0px;
   table-layout: fixed;
   vertical-align: middle;
+  white-space: nowrap;
 
   th {
     font-weight: 500;
@@ -68,10 +69,26 @@
     th {
       background-color: $color;
       border-color: darken($color, 5%);
+      &.effective {
+        background-color: $effective_color;
+        border-color: darken($effective_color, 5%);
+      }
+      &.marginal {
+        background-color: $marginal_color;
+        border-color: darken($marginal_color, 5%);
+      }
     }
     td {
       background-color: lighten($color, 10%);
       border-color: darken(lighten($color, 10%), 5%);
+      &.effective {
+        background-color: $effective_color;
+        border-color: darken($effective_color, 5%);
+      }
+      &.marginal {
+        background-color: $marginal_color;
+        border-color: darken($marginal_color, 5%);
+      }
     }
     td.editable {
       $e_color: lighten($color, 20%);

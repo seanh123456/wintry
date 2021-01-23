@@ -5,7 +5,9 @@ import {
 } from '../actions/income'
 
 const initialState = {
-  income1: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  taxable: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  nonTaxable: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  capitalGains: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
   healthcare: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
   emplHsa: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
   hsa: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
@@ -14,7 +16,7 @@ const initialState = {
   tIra: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
   rIra: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
   brokerage: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
-  
+
   gIncome: { val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
   nIncome: { val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
   gComp: { val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
@@ -53,12 +55,26 @@ export default function inputs(state = initialState, action) {
     case ACTION_TYPES.FINANCE_UPDATE_CALCULATIONS:
       return {
         ...state,
-        income1: {
-          ...state.income1,
-          val: NumberFormatService.toNumber(action.values.income1),
-          annual: NumberFormatService.toCurrency(action.values.income1),
-          monthly: NumberFormatService.toCurrency(action.values.income1 / 12),
-          paycheck: NumberFormatService.toCurrency(action.values.income1 / 26),
+        taxable: {
+          ...state.taxable,
+          val: NumberFormatService.toNumber(action.values.taxable),
+          annual: NumberFormatService.toCurrency(action.values.taxable),
+          monthly: NumberFormatService.toCurrency(action.values.taxable / 12),
+          paycheck: NumberFormatService.toCurrency(action.values.taxable / 26),
+        },
+        nonTaxable: {
+          ...state.nonTaxable,
+          val: NumberFormatService.toNumber(action.values.nonTaxable),
+          annual: NumberFormatService.toCurrency(action.values.nonTaxable),
+          monthly: NumberFormatService.toCurrency(action.values.nonTaxable / 12),
+          paycheck: NumberFormatService.toCurrency(action.values.nonTaxable / 26),
+        },
+        capitalGains: {
+          ...state.capitalGains,
+          val: NumberFormatService.toNumber(action.values.capitalGains),
+          annual: NumberFormatService.toCurrency(action.values.capitalGains),
+          monthly: NumberFormatService.toCurrency(action.values.capitalGains / 12),
+          paycheck: NumberFormatService.toCurrency(action.values.capitalGains / 26),
         },
         healthcare: {
           ...state.healthcare,

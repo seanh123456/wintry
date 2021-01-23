@@ -69,7 +69,7 @@ function calcFicaTax(filingStatus, gIncome, ficaAgi) {
   var marginalTax = Math.abs(ficaAgi) < SOCIAL_SECURITY_MAX_TAXABLE ? SOCIAL_SECURITY_TAX_RATE : 0
   marginalTax += MEDICARE_TAX_RATE
 
-  return { name: 'ficaTax', tax: ficaTax, effective: ficaTax / gIncome, marginal: marginalTax, }
+  return { name: 'ficaTax', tax: ficaTax, effective: -1 * ficaTax / gIncome, marginal: marginalTax, }
 }
 
 function calcFederalAgi(filingStatus, federalAgi) {
@@ -82,7 +82,7 @@ function calcFederalTax(filingStatus, gIncome, federalAgi) {
   var numChildren = 1
   fed.tax += numChildren * 2000
 
-  return { name: 'federalTax', tax: fed.tax, effective: fed.tax / gIncome, marginal: fed.marginal, }
+  return { name: 'federalTax', tax: fed.tax, effective: -1 * fed.tax / gIncome, marginal: fed.marginal, }
 }
 
 function calcStateAgi(filingStatus, federalAgi, agi) {
@@ -106,14 +106,14 @@ function calcStateTax(filingStatus, gIncome, stateAgi) {
 
   var state = calculateTax(stateAgi, STATE_BRACKETS)
 
-  return { name: 'stateTax', tax: state.tax, effective: state.tax / gIncome, marginal: state.marginal }
+  return { name: 'stateTax', tax: state.tax, effective: -1 * state.tax / gIncome, marginal: state.marginal }
 }
 
 function calcLocalTax(filingStatus, gIncome, stateAgi) {
   var localTax = -1 * stateAgi * LOCAL_TAX_RATE
   var localMarginal = stateAgi > 0 ? LOCAL_TAX_RATE : 0
 
-  return { name: 'localTax', tax: localTax, effective: localTax / gIncome, marginal: localMarginal }
+  return { name: 'localTax', tax: localTax, effective: -1 * localTax / gIncome, marginal: localMarginal }
 }
 
 function calculateTax(taxableIncome, taxBrackets) {
