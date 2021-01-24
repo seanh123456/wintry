@@ -11,6 +11,11 @@ const FEDERAL_BRACKETS = [
   { limit: 628300, percent: 0.35 },
   { limit:   1e10, percent: 0.37 },
 ]
+const FEDERAL_GAINS_BRACKETS = [
+  { limit:  80800, percent: 0.0 },
+  { limit:  501600, percent: 0.15 },
+  { limit:   1e10, percent: 0.20 },
+]
 const STATE_BRACKETS = [
   { limit:   1000, percent: 0.02 },
   { limit:   2000, percent: 0.03 },
@@ -33,7 +38,7 @@ export const financePopTax = (name, tax, effective, marginal) => ({
     marginal: marginal,
 })
 
-export function financeCalcTax(gIncome, ficaAgi, agi) {
+export function financeCalcTax(gIncome, ficaAgi, agi, capitalGains) {
   return dispatch => {
     var federalAgi = calcFederalAgi('mfj', agi)
     var stateAgi = calcStateAgi('mfj', federalAgi, agi)
@@ -41,6 +46,7 @@ export function financeCalcTax(gIncome, ficaAgi, agi) {
     var taxes = {}
     taxes['ficaTax'] = calcFicaTax('mfj', gIncome, ficaAgi)
     taxes['federalTax'] = calcFederalTax('mfj', gIncome, federalAgi)
+    taxes['federalGainsTax'] = calcFederalGainsTax('mfj', federalAgi, capitalGains)
     taxes['stateTax'] = calcStateTax('mfj', gIncome, stateAgi)
     taxes['localTax'] = calcLocalTax('mfj', gIncome, stateAgi)
 
@@ -83,6 +89,18 @@ function calcFederalTax(filingStatus, gIncome, federalAgi) {
   fed.tax += numChildren * 2000
 
   return { name: 'federalTax', tax: fed.tax, effective: -1 * fed.tax / gIncome, marginal: fed.marginal, }
+}
+
+function calcFederalGainsTax(filingStatus, federalAgi, capitalGains) {
+  var adjustedGainsBracket = []
+
+  for (const bracket in FEDERAL_GAINS_BRACKETS) {
+    adjustedGainsBracket.push( { limit: Math.max(FEDERAL_GAINS_BRACKETS[bracket].limit - federalAgi, 0), percent: FEDERAL_GAINS_BRACKETS[bracket].percent } )
+  }
+
+  var fedGains = calculateTax(capitalGains, adjustedGainsBracket)
+
+  return { name: 'federalGainsTax', tax: fedGains.tax, effective: -1 * fedGains.tax / capitalGains, marginal: fedGains.marginal, }
 }
 
 function calcStateAgi(filingStatus, federalAgi, agi) {

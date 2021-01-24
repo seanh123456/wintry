@@ -6,6 +6,7 @@ class Tax extends React.Component {
     const {
       ficaTax,
       federalTax,
+      federalGainsTax,
       stateTax,
       localTax,
       totalTax,
@@ -31,12 +32,20 @@ class Tax extends React.Component {
             <td className="marginal">{ficaTax.marginal}</td>
           </tr>
           <tr className="federal">
-            <th>Federal Tax:</th>
+            <th>Fed Tax:</th>
             <td>{federalTax.annual}</td>
             <td>{federalTax.monthly}</td>
             <td>{federalTax.paycheck}</td>
             <td className="effective">{federalTax.effective}</td>
             <td className="marginal">{federalTax.marginal}</td>
+          </tr>
+          <tr className="federal">
+            <th>FG Tax:</th>
+            <td>{federalGainsTax.annual}</td>
+            <td>{federalGainsTax.monthly}</td>
+            <td>{federalGainsTax.paycheck}</td>
+            <td className="effective">{federalGainsTax.effective}</td>
+            <td className="marginal">{federalGainsTax.marginal}</td>
           </tr>
           <tr className="state">
             <th>State Tax:</th>
@@ -71,6 +80,7 @@ class Tax extends React.Component {
 const mapStateToProps = state => ({
   ficaTax: state.finance.tax.ficaTax,
   federalTax: state.finance.tax.federalTax,
+  federalGainsTax: state.finance.tax.federalGainsTax,
   stateTax: state.finance.tax.stateTax,
   localTax: state.finance.tax.localTax,
   totalTax: state.finance.tax.totalTax,

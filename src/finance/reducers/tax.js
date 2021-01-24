@@ -7,6 +7,7 @@ import {
 const initialState = {
   ficaTax: { annual: '0.00', monthly: '0.00', paycheck: '0.00', effective: '0.00%', marginal: '0.00%', },
   federalTax: { annual: '0.00', monthly: '0.00', paycheck: '0.00', effective: '0.00%', marginal: '0.00%', },
+  federalGainsTax: { annual: '0.00', monthly: '0.00', paycheck: '0.00', effective: '0.00%', marginal: '0.00%', },
   stateTax: { annual: '0.00', monthly: '0.00', paycheck: '0.00', effective: '0.00%', marginal: '0.00%', },
   localTax: { annual: '0.00', monthly: '0.00', paycheck: '0.00', effective: '0.00%', marginal: '0.00%', },
   totalTax: { annual: '0.00', monthly: '0.00', paycheck: '0.00', effective: '0.00%', marginal: '0.00%', },
