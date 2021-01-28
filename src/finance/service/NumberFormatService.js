@@ -1,4 +1,7 @@
+const MAX_INPUT = 99999999.99
+
 class NumberFormatService {
+
   getColorClass(n) {
     if (n > 0) {
       return "positive"

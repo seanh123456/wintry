@@ -1,5 +1,9 @@
-$body_color: #ddb8ba;
-// $body_color: #f6f6eb;
+// $body_color: #ddb8ba; // Pastel Pink
+$body_color: #f6f6eb; // Pastel Light Yellow
+// $body_color: #bdd7ee; // Pastel Light Blue
+// $body_color: #a5f8ce; // Pastel Green
+// $body_color: #c5ebfe; // Pastel Blue
+
 $text_color: invert($body_color);
 $link_color: adjust_hue($text_color, 90%);
 

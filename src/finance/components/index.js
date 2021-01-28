@@ -36,9 +36,13 @@ class Finance extends React.Component {
         <section className="wrapper">
           <div>
             {greet}
-            <Options />
           </div>
         </section>
+          <section className="wrapper">
+            <div>
+              <Options />
+            </div>
+          </section>
         <section className="wrapper">
           <div className="financial-tables">
             <div className="financial-table">
