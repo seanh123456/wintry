@@ -60,20 +60,28 @@ export function financeCalcTax(gIncome, ficaAgi, agi, capitalGains) {
     capitalGainsTaxes['stateGainsTax'] = calcStateGainsTax('mfj', stateTaxable, capitalGains)
     capitalGainsTaxes['localGainsTax'] = calcLocalGainsTax('mfj', capitalGains)
 
-    var totalTax = 0;
-    var totalEffective = 0;
-    var totalMarginal = 0;
-    for (const taxName in incomeTaxes) {
-      var tax = incomeTaxes[taxName]
-      totalTax += tax.tax
-      totalEffective += tax.effective
-      totalMarginal += tax.marginal
-      dispatch(financePopTax(tax.name, tax.tax, tax.effective, tax.marginal))
-    }
-    dispatch(financePopTax('totalTax', totalTax, totalEffective, totalMarginal))
+    var totalIncomeTax = aggregateTax(dispatch, incomeTaxes)
+    dispatch(financePopTax('totalTax', totalIncomeTax.total, totalIncomeTax.effective, totalIncomeTax.marginal))
 
-    return totalTax
+    var totalGainsTax = aggregateTax(dispatch, capitalGainsTaxes)
+    dispatch(financePopTax('totalGainsTax', totalGainsTax.total, totalGainsTax.effective, totalGainsTax.marginal))
+    
+    return totalIncomeTax.total + totalGainsTax.total
   }
+}
+
+function aggregateTax(dispatch, taxes) {
+  var totalTax = 0;
+  var totalEffective = 0;
+  var totalMarginal = 0;
+  for (const taxName in taxes) {
+    var tax = taxes[taxName]
+    totalTax += tax.tax
+    totalEffective += tax.effective
+    totalMarginal += tax.marginal
+    dispatch(financePopTax(tax.name, tax.tax, tax.effective, tax.marginal))
+  }
+  return { total: totalTax, effective: totalEffective, marginal: totalMarginal }
 }
 
 function calcFederalTaxable(filingStatus, agi) {
@@ -173,7 +181,7 @@ function calcStateGainsTax(filingStatus, stateTaxable, capitalGains) {
 
   var stateGains = calculateTax(capitalGains, adjustedGainsBracket)
 
-  return { name: 'federalGainsTax', tax: stateGains.tax, effective: -1 * stateGains.tax / capitalGains, marginal: stateGains.marginal, }
+  return { name: 'stateGainsTax', tax: stateGains.tax, effective: -1 * stateGains.tax / capitalGains, marginal: stateGains.marginal, }
 }
 
 function calcLocalGainsTax(filingStatus, capitalGains) {

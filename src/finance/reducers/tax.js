@@ -9,8 +9,11 @@ const initialState = {
   federalTax: { annual: '0.00', monthly: '0.00', paycheck: '0.00', effective: '0.00%', marginal: '0.00%', },
   federalGainsTax: { annual: '0.00', monthly: '0.00', paycheck: '0.00', effective: '0.00%', marginal: '0.00%', },
   stateTax: { annual: '0.00', monthly: '0.00', paycheck: '0.00', effective: '0.00%', marginal: '0.00%', },
+  stateGainsTax: { annual: '0.00', monthly: '0.00', paycheck: '0.00', effective: '0.00%', marginal: '0.00%', },
   localTax: { annual: '0.00', monthly: '0.00', paycheck: '0.00', effective: '0.00%', marginal: '0.00%', },
+  localGainsTax: { annual: '0.00', monthly: '0.00', paycheck: '0.00', effective: '0.00%', marginal: '0.00%', },
   totalTax: { annual: '0.00', monthly: '0.00', paycheck: '0.00', effective: '0.00%', marginal: '0.00%', },
+  totalGainsTax: { annual: '0.00', monthly: '0.00', paycheck: '0.00', effective: '0.00%', marginal: '0.00%', },
 }
 
 export default function tax(state = initialState, action) {

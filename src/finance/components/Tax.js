@@ -8,8 +8,11 @@ class Tax extends React.Component {
       federalTax,
       federalGainsTax,
       stateTax,
+      stateGainsTax,
       localTax,
+      localGainsTax,
       totalTax,
+      totalGainsTax,
     } = this.props
 
     return (
@@ -39,14 +42,6 @@ class Tax extends React.Component {
             <td className="effective">{federalTax.effective}</td>
             <td className="marginal">{federalTax.marginal}</td>
           </tr>
-          <tr className="federal">
-            <th>FG Tax:</th>
-            <td>{federalGainsTax.annual}</td>
-            <td>{federalGainsTax.monthly}</td>
-            <td>{federalGainsTax.paycheck}</td>
-            <td className="effective">{federalGainsTax.effective}</td>
-            <td className="marginal">{federalGainsTax.marginal}</td>
-          </tr>
           <tr className="state">
             <th>State Tax:</th>
             <td>{stateTax.annual}</td>
@@ -71,6 +66,38 @@ class Tax extends React.Component {
             <td className="effective">{totalTax.effective}</td>
             <td className="marginal">{totalTax.marginal}</td>
           </tr>
+          <tr className="federal">
+            <th>FG Tax:</th>
+            <td>{federalGainsTax.annual}</td>
+            <td>{federalGainsTax.monthly}</td>
+            <td>{federalGainsTax.paycheck}</td>
+            <td className="effective">{federalGainsTax.effective}</td>
+            <td className="marginal">{federalGainsTax.marginal}</td>
+          </tr>
+          <tr className="state">
+            <th>SG Tax:</th>
+            <td>{stateGainsTax.annual}</td>
+            <td>{stateGainsTax.monthly}</td>
+            <td>{stateGainsTax.paycheck}</td>
+            <td className="effective">{stateGainsTax.effective}</td>
+            <td className="marginal">{stateGainsTax.marginal}</td>
+          </tr>
+          <tr className="local">
+            <th>SG Tax:</th>
+            <td>{localGainsTax.annual}</td>
+            <td>{localGainsTax.monthly}</td>
+            <td>{localGainsTax.paycheck}</td>
+            <td className="effective">{localGainsTax.effective}</td>
+            <td className="marginal">{localGainsTax.marginal}</td>
+          </tr>
+          <tr className="total-tax">
+            <th>TG Tax:</th>
+            <td>{totalGainsTax.annual}</td>
+            <td>{totalGainsTax.monthly}</td>
+            <td>{totalGainsTax.paycheck}</td>
+            <td className="effective">{totalGainsTax.effective}</td>
+            <td className="marginal">{totalGainsTax.marginal}</td>
+          </tr>
         </tbody>
       </table>
     )
@@ -82,8 +109,11 @@ const mapStateToProps = state => ({
   federalTax: state.finance.tax.federalTax,
   federalGainsTax: state.finance.tax.federalGainsTax,
   stateTax: state.finance.tax.stateTax,
+  stateGainsTax: state.finance.tax.stateGainsTax,
   localTax: state.finance.tax.localTax,
+  localGainsTax: state.finance.tax.localGainsTax,
   totalTax: state.finance.tax.totalTax,
+  totalGainsTax: state.finance.tax.totalGainsTax,
 })
 
 export default connect(mapStateToProps) (Tax)
