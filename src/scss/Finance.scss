@@ -1,0 +1,170 @@
+@import './colors';
+
+.financial-tables {
+  display: flex;
+  flex-flow: row wrap;
+  margin: -.25rem;
+
+  .financial-table {
+    flex: 1 0 450px;
+    margin: .25rem;
+  }
+}
+
+.financial {
+  width: 100%;
+  border-spacing: 0px;
+  table-layout: fixed;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  th {
+    font-weight: 500;
+  }
+
+  input {
+    width: 100%;
+    width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    width: stretch;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    text-align: right;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  tr {
+    &:not(:first-child) {
+      text-align: right;
+      th {
+      padding-right: 10px;
+      }
+    }
+    th, td {
+      border-width: 1px 0 0 1px;
+      border-style: solid;
+      padding: 1px 2px;
+      line-height: 21px;
+    }
+    th:last-child, td:last-child {
+      border-width: 1px 1px 0 1px;
+      border-style: solid;
+    }
+
+    &:last-child {
+      th, td {
+        border-width: 1px 0 1px 1px;
+      }
+      th:last-child, td:last-child {
+        border-width: 1px;
+      }
+    }
+  }
+
+  @mixin table-color($color) {
+    th {
+      background-color: $color;
+      border-color: darken($color, 5%);
+      &.effective {
+        background-color: $effective_color;
+        border-color: darken($effective_color, 5%);
+      }
+      &.marginal {
+        background-color: $marginal_color;
+        border-color: darken($marginal_color, 5%);
+      }
+    }
+    td {
+      background-color: lighten($color, 10%);
+      border-color: darken(lighten($color, 10%), 5%);
+      &.effective {
+        background-color: $effective_color;
+        border-color: darken($effective_color, 5%);
+      }
+      &.marginal {
+        background-color: $marginal_color;
+        border-color: darken($marginal_color, 5%);
+      }
+    }
+    td.editable {
+      $e_color: lighten($color, 20%);
+      background-color: $e_color;
+      border-color: darken($e_color, 5%);
+      &:hover {
+        background-color: #fff;
+      }
+    }
+  }
+
+  .table_header {
+    @include table-color($table_header_color);
+  }
+
+  .income {
+    @include table-color($income_color);
+  }
+
+  .health {
+    @include table-color($health_color);
+  }
+
+  .fica {
+    @include table-color($fica_color);
+  }
+
+  .emp_ret {
+    @include table-color($emp_ret_color);
+  }
+
+  .trad_ira {
+    @include table-color($trad_ira_color);
+  }
+
+  .roth_ira {
+    @include table-color($roth_ira_color);
+  }
+
+  .brokerage {
+    @include table-color($brokerage_color);
+  }
+
+  .federal {
+    @include table-color($federal_color);
+  }
+
+  .state {
+    @include table-color($state_color);
+  }
+
+  .local {
+    @include table-color($local_color);
+  }
+
+  .net_income {
+    @include table-color($net_income_color);
+  }
+
+  .gross_comp {
+    @include table-color($gross_comp_color);
+  }
+
+  .net_comp {
+    @include table-color($net_comp_color);
+  }
+
+  .net_take_home {
+    @include table-color($net_take_home_color);
+  }
+
+  .savings {
+    @include table-color($savings_color);
+  }
+
+  .total-tax {
+    @include table-color($total_color);
+  }
+}

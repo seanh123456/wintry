@@ -20,19 +20,21 @@ class SignIn extends React.Component {
     }
 
     return (
-      <header className="App-header">
-        <div className="wrapper">
-          {greet}
-        </div>
-      </header>
+      <div className="App-content">
+        <section className="wrapper">
+          <div>
+            {greet}
+          </div>
+        </section>
+      </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  greeting: state.auth.greeting,
-  loading: state.auth.loading,
-  error: state.auth.error
+  greeting: state.auth.auth.greeting,
+  loading: state.auth.auth.loading,
+  error: state.auth.auth.error
 })
 
 export default connect(mapStateToProps) (SignIn)

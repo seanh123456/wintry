@@ -20,19 +20,21 @@ class Recipe extends React.Component {
     }
 
     return (
-      <header className="App-header">
-        <div className="wrapper">
-          {greet}
-        </div>
-      </header>
+      <div className="App-content">
+        <section className="wrapper">
+          <div>
+            {greet}
+          </div>
+        </section>
+      </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  greeting: state.recipe.greeting,
-  loading: state.recipe.loading,
-  error: state.recipe.error
+  greeting: state.recipe.recipe.greeting,
+  loading: state.recipe.recipe.loading,
+  error: state.recipe.recipe.error
 })
 
 export default connect(mapStateToProps) (Recipe)

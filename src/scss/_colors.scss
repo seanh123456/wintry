@@ -1,0 +1,29 @@
+$body_color: #ddb8ba; // Pastel Pink
+// $body_color: #f6f6eb; // Pastel Light Yellow
+// $body_color: #bdd7ee; // Pastel Light Blue
+// $body_color: #a5f8ce; // Pastel Green
+// $body_color: #c5ebfe; // Pastel Blue
+
+$text_color: invert($body_color);
+$link_color: adjust_hue($text_color, 90%);
+
+$effective_color: #cccccc;
+$marginal_color: #d9d9d9;
+
+$table_header_color: #b7b7b7;
+$income_color: #f6b26b;
+$health_color: #93c47d;
+$fica_color: #93c47d;
+$emp_ret_color: #ffd966;
+$federal_color: #e06666;
+$state_color: #6d9eeb;
+$local_color: #6fa8dc;
+$trad_ira_color: #8e7cc3;
+$roth_ira_color: #e06666;
+$brokerage_color: #76a5af;
+$net_income_color: #8e7cc3;
+$gross_comp_color: #f6b26b;
+$net_comp_color: #f9cb9c;
+$net_take_home_color: #c27ba0;
+$savings_color: #76a5af;
+$total_color: #8e7cc3;
