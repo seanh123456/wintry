@@ -1,4 +1,4 @@
-const MAX_INPUT = 99999999.99
+//const MAX_INPUT = 99999999.99
 
 class NumberFormatService {
 
