@@ -4,8 +4,7 @@ const MEDICARE_TAX_RATE = 0.0145
 const ADDITIONAL_MEDICARE_TAX_THRESHOLD = 250000
 const ADDITIONAL_MEDICARE_TAX_RATE = 0.009
 const FEDERAL_STANDARD_DEDUCTION = 12550
-const FEDERAL_CHILD_CREDIT_NONREFUNDABLE = 600
-const FEDERAL_CHILD_CREDIT_REFUNDABLE = 1400
+const FEDERAL_CHILD_CREDIT_REFUNDABLE = 3600
 const FEDERAL_BRACKETS = [
   { limit:  19900, percent: 0.10 },
   { limit:  81050, percent: 0.12 },
@@ -65,7 +64,7 @@ export function financeCalcTax(gIncome, ficaAgi, agi, capitalGains) {
 
     var totalGainsTax = aggregateTax(dispatch, capitalGainsTaxes)
     dispatch(financePopTax('totalGainsTax', totalGainsTax.total, totalGainsTax.effective, totalGainsTax.marginal))
-    
+
     return totalIncomeTax.total + totalGainsTax.total
   }
 }
@@ -128,10 +127,6 @@ function calcFederalTax(filingStatus, gIncome, federalAgi) {
 
   var numChildren = 1
 
-  // Non refundable credit cannot reduce liability below 0
-  fed.tax += numChildren * FEDERAL_CHILD_CREDIT_NONREFUNDABLE
-  fed.tax = Math.min(fed.tax, 0)
-
   // Refundable credit can reduce liability below 0
   fed.tax += numChildren * FEDERAL_CHILD_CREDIT_REFUNDABLE
 
@@ -143,7 +138,7 @@ function calcFederalTax(filingStatus, gIncome, federalAgi) {
 
 function calcStateTax(filingStatus, gIncome, stateAgi) {
   var state = calculateTax(stateAgi, STATE_BRACKETS)
-
+  
   return { name: 'stateTax', tax: state.tax, effective: -1 * state.tax / gIncome, marginal: state.marginal }
 }
 

@@ -45,11 +45,12 @@ export function financeEnterEntry(name, value) {
 
     var agi = calcAgi(values)
     var ficaTaxable = calcFicaTaxable(values)
+    console.log("ftax: " + ficaTaxable)
     var totalTax = dispatch(financeCalcTax(values.taxable, ficaTaxable, agi, values.capitalGains))
     // console.log(agi + " + " + values.nonTaxable + " + " + values.capitalGains + " + " + totalTax)
     var nIncome = agi + values.nonTaxable + values.capitalGains + totalTax
-    var gComp = values.taxable + values.nonTaxable + values.capitalGains + values.emplHsa + values.emplT401k
-    var nComp = gComp + totalTax + values.healthcare
+    var gComp = values.taxable + values.nonTaxable + values.capitalGains + values.emplHsa + values.emplT401k + values.healthcare
+    var nComp = gComp + totalTax
     var nTakeHome = nIncome - values.rIra - values.brokerage
     var savings = values.emplHsa + values.hsa + values.emplT401k + values.t401k + values.tIra + values.rIra + values.brokerage
 
