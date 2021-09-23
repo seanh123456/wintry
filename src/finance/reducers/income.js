@@ -16,6 +16,7 @@ const initialState = {
   tIra: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
   rIra: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
   brokerage: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
+  atInsurance: { entry: '', editing: false, val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
 
   gIncome: { val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
   nIncome: { val: 0.0, annual: '$0.00', monthly: '$0.00', paycheck: '$0.00' },
@@ -131,6 +132,13 @@ export default function inputs(state = initialState, action) {
           annual: NumberFormatService.toCurrency(action.values.brokerage),
           monthly: NumberFormatService.toCurrency(action.values.brokerage / 12),
           paycheck: NumberFormatService.toCurrency(action.values.brokerage / 26),
+        },
+        atInsurance: {
+          ...state.atInsurance,
+          val: NumberFormatService.toNumber(action.values.atInsurance),
+          annual: NumberFormatService.toCurrency(action.values.atInsurance),
+          monthly: NumberFormatService.toCurrency(action.values.atInsurance / 12),
+          paycheck: NumberFormatService.toCurrency(action.values.atInsurance / 26),
         },
         gIncome: {
           val: NumberFormatService.toNumber(action.gIncome),

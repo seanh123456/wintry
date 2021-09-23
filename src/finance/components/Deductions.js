@@ -11,6 +11,7 @@ class Deductions extends React.Component {
       tIra,
       rIra,
       brokerage,
+      atInsurance,
     } = this.props
 
     const handleBlur = (event) => {
@@ -23,6 +24,7 @@ class Deductions extends React.Component {
     let tIraInput
     let rIraInput
     let brokerageInput
+    let atInsuranceInput
 
     return (
       <table className="financial">
@@ -97,6 +99,22 @@ class Deductions extends React.Component {
             <td>{brokerage.monthly}</td>
             <td>{brokerage.paycheck}</td>
           </tr>
+          <tr className="atInsurance">
+            <th>AT Insurance:</th>
+            <td className="editable"><input
+              name="atInsurance"
+              type="text"
+              autoComplete="off"
+              ref={node => (atInsuranceInput = node)}
+              value={atInsurance.editing ? atInsurance.entry : atInsurance.annual}
+              onKeyPress={handleBlur}
+              onChange={event => this.props.financeEnterEntry(event.target.name, atInsuranceInput.value)}
+              onFocus={event => this.props.financeEditEntry(event.target.name)}
+              onBlur={event => this.props.financeDisplayEntry(event.target.name)}
+            /></td>
+            <td>{atInsurance.monthly}</td>
+            <td>{atInsurance.paycheck}</td>
+          </tr>
         </tbody>
       </table>
     )
@@ -108,6 +126,7 @@ const mapStateToProps = state => ({
   tIra: state.finance.income.tIra,
   rIra: state.finance.income.rIra,
   brokerage: state.finance.income.brokerage,
+  atInsurance: state.finance.income.atInsurance,
 })
 const mapDispatchToProps = (dispatch, props) => ({
   financeEditEntry: name => { dispatch(financeEditEntry(name)) },

@@ -51,7 +51,7 @@ export function financeEnterEntry(name, value) {
     var nIncome = agi + values.nonTaxable + values.capitalGains + totalTax
     var gComp = values.taxable + values.nonTaxable + values.capitalGains + values.emplHsa + values.emplT401k + values.healthcare
     var nComp = gComp + totalTax
-    var nTakeHome = nIncome - values.rIra - values.brokerage
+    var nTakeHome = nIncome - values.rIra - values.brokerage - values.atInsurance
     var savings = values.emplHsa + values.hsa + values.emplT401k + values.t401k + values.tIra + values.rIra + values.brokerage
 
     values.[name] = value
@@ -72,6 +72,7 @@ function getValues(state) {
     tIra: state.finance.income.tIra.val,
     rIra: state.finance.income.rIra.val,
     brokerage: state.finance.income.brokerage.val,
+    atInsurance: state.finance.income.atInsurance.val,
   }
 }
 

@@ -132,6 +132,10 @@
     @include table-color($brokerage_color);
   }
 
+  .atInsurance {
+    @include table-color($brokerage_color);
+  }
+
   .federal {
     @include table-color($federal_color);
   }

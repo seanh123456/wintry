@@ -46,7 +46,7 @@ export const financePopTax = (name, tax, effective, marginal) => ({
 export function financeCalcTax(gIncome, ficaAgi, agi, capitalGains) {
   return dispatch => {
     var federalTaxable = calcFederalTaxable('mfj', agi)
-    var stateTaxable = calcStateTaxable('mfj', federalTaxable, agi)
+    var stateTaxable = calcStateTaxable('mfj', agi)
 
     var incomeTaxes = {}
     incomeTaxes['ficaTax'] = calcFicaTax('mfj', gIncome, ficaAgi)
@@ -87,17 +87,17 @@ function calcFederalTaxable(filingStatus, agi) {
   return Math.max(agi - FEDERAL_STANDARD_DEDUCTION * 2, 0)
 }
 
-function calcStateTaxable(filingStatus, gIncome, agi) {
+function calcStateTaxable(filingStatus, agi) {
   var stateDeduction = Math.min(Math.max(agi * .15, 3200), 4650)
 
   var stateExemption = 0
   var numExemptions = 3;
 
-  if (gIncome <= 150000) {
+  if (agi <= 150000) {
     stateExemption = 3200
-  } else if (gIncome > 150000 && gIncome <= 175000) {
+  } else if (agi > 150000 && agi <= 175000) {
     stateExemption = 1600
-  } else if (gIncome > 175000 && gIncome <= 200000) {
+  } else if (agi > 175000 && agi <= 200000) {
     stateExemption = 800
   }
 
@@ -138,7 +138,7 @@ function calcFederalTax(filingStatus, gIncome, federalAgi) {
 
 function calcStateTax(filingStatus, gIncome, stateAgi) {
   var state = calculateTax(stateAgi, STATE_BRACKETS)
-  
+
   return { name: 'stateTax', tax: state.tax, effective: -1 * state.tax / gIncome, marginal: state.marginal }
 }
 
